@@ -159,16 +159,24 @@ class Converter
     {
         $search = [
             'product_name',
+            'ingredients_text',
             'sugars_100g',
             'salt_100g',
             'alcohol_100g',
+            'proteins_100g',
+            'saturated-fat_100g',
+            'fiber_100g',
         ];
 
         $replace = [
             DbColumn::PRODUCT_NAME,
+            DbColumn::INGREDIENTS,
             DbColumn::SUGAR,
             DbColumn::SALT,
             DbColumn::ALCOHOL,
+            DbColumn::PROTEIN,
+            DbColumn::SATURATED_FATS,
+            DbColumn::DIETARY_FIBER,
         ];
 
         return str_replace($search, $replace, $keyName);

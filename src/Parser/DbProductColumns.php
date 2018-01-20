@@ -18,11 +18,12 @@ class DbProductColumns
     public const IS_HEALTHY = 'isHealthy';
     public const VITAMINS = 'vitamin';
     public const FAT = 'fat';
-    public const SATURATED_FATS = 'saturated fats';
-    public const PROTEIN = 'Protein';
+    public const SATURATED_FATS = 'saturatedFats';
+    public const PROTEIN = 'protein';
     public const SUGAR = 'sugar';
     public const SALT = 'salt';
     public const CARBOHYDRATE = 'carbohydrate';
-    public const DIETARY_FIBER = 'dietary_fiber';
+    public const DIETARY_FIBER = 'dietaryFiber';
     public const ALCOHOL = 'alcohol';
+    public const INGREDIENTS = 'ingredients';
 }
