@@ -30,4 +30,4 @@ $csvReader = Reader::createFromPath($file, 'r+');
 $converter = new Converter($csvReader);
 file_put_contents($fullPathOutputDb, $converter->asXml());
 
-echo 'The DB has been generated in: ' . $fullPathOutputDb;
+echo 'The DB has been generated in: <a href="view-source:file://' . $fullPathOutputDb . '">' . $fullPathOutputDb . '</a>';
