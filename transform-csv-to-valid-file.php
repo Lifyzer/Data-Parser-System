@@ -5,6 +5,7 @@
  * @license        GNU General Public License; <https://www.gnu.org/licenses/gpl-3.0.en.html>
  */
 
+use League\Csv\Reader;
 use Lifyzer\Parser\Converter;
 use Lifyzer\Parser\CsvFile;
 
@@ -23,7 +24,9 @@ require 'vendor/autoload.php';
 
 $fullPathFile = __DIR__ . '/data/providers/en.openfoodfacts.org.products.csv';
 
-$converter = new Converter(new CsvFile($fullPathFile));
+$file = (new CsvFile($fullPathFile))->getValue();
+$csvReader = Reader::createFromPath($file, 'r+');
+$converter = new Converter($csvReader);
 $results = $converter->asArray();
 
 var_dump($results);
