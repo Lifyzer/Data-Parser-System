@@ -49,7 +49,7 @@ class ConverterTest extends TestCase
             'caffeine_100g' => '',
             'isHealthy' => '0'
         ],
-            $converter->asArray()[1]);
+        $converter->asArray()[1]);
     }
 
     public function testXmlConverted(): void
