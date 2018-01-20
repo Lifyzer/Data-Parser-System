@@ -15,8 +15,8 @@ ini_set('display_errors', 'On');
 @set_time_limit(0);
 @ini_set('memory_limit', '-1');
 
-if (!ini_get("auto_detect_line_endings")) {
-    ini_set("auto_detect_line_endings", '1');
+if (!ini_get('auto_detect_line_endings')) {
+    ini_set('auto_detect_line_endings', '1');
 }
 
 
@@ -30,4 +30,4 @@ $csvReader = Reader::createFromPath($file, 'r+');
 $converter = new Converter($csvReader);
 file_put_contents($fullPathOutputDb, $converter->asXml());
 
-echo 'The DB has been generated in: <a href="view-source:file://' . $fullPathOutputDb . '">' . $fullPathOutputDb . '</a>';
+echo '<p>The DB has been generated in: <a href="view-source:file://' . $fullPathOutputDb . '">' . $fullPathOutputDb . '</a> (very big file! Your computer might freeze)</p>';
