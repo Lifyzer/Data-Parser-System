@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Lifyzer\Parser;
 
 use League\Csv\Reader;
+use Lifyzer\Parser\DbProductColumns as DbColumn;
 
 class Converter
 {
@@ -59,22 +60,16 @@ class Converter
     /** @var array */
     private $data = [];
 
-    /**
-     * @param CsvFile $file
-     */
-    public function __construct(CsvFile $file)
+    public function __construct(Reader $csvReader)
     {
-        $path = $file->getValue();
-
-        $csvReader = Reader::createFromPath($path, 'r+');
-
         $records = $csvReader->getRecords(self::WANTED_DATA);
+
         foreach ($records as $offset => $data) {
             foreach ($data as $key => $val) {
                 $this->data[$offset][$this->replaceKeys($key)] = $val;
             }
 
-            $this->data[$offset]['isHealthy'] = (string) $this->isNotHealthy($offset) ? 0 : 1;
+            $this->data[$offset][DbColumn::IS_HEALTHY] = (string)$this->isNotHealthy($offset) ? 0 : 1;
         }
     }
 
@@ -135,10 +130,10 @@ class Converter
         ];
 
         $replace = [
-            'name',
-            'sugar',
-            'salt',
-            'alcohol',
+            DbColumn::PRODUCT_NAME,
+            DbColumn::SUGAR,
+            DbColumn::SALT,
+            DbColumn::ALCOHOL,
         ];
 
         return str_replace($search, $replace, $keyName);
