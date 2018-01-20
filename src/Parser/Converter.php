@@ -90,7 +90,7 @@ class Converter
         $dom = $converter->convert($this->data);
         $dom->formatOutput = true;
 
-        return htmlentities($dom->saveXML());
+        return $dom->saveXML();
     }
 
 
