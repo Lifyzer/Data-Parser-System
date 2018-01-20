@@ -9,49 +9,112 @@ declare(strict_types=1);
 
 namespace Lifyzer\Parser;
 
-use League\Csv\Writer;
+use League\Csv\Reader;
 
 class Converter
 {
     private const EXPORT_FILENAME = 'food-database.sql';
     private const MAXIMUM_HEALTHY_SUGAR = 20;
+    private const MAXIMUM_HEALTHY_SALT = 20;
 
-    /** @var Writer */
-    private $csv;
+    private const WANTED_DATA = [
+        'product_name',
+        'countries_en',
+        'ingredients_text',
+        'allergens_en',
+        'additives_en',
+        'sugars_100g',
+        'cholesterol_100g',
+        'saturated-fat_100g',
+        'fiber_100g',
+        'proteins_100g',
+        'casein_100g',
+        'salt_100g',
+        'sodium_100g',
+        'alcohol_100g',
+        'vitamin-a_100g',
+        'vitamin-c_100g',
+        'vitamin-d_100g',
+        'vitamin-e_100g',
+        'vitamin-k_100g',
+        'calcium_100g',
+        'magnesium_100g',
+        'iron_100g',
+        'zinc_100g',
+        'cacao_100g',
+        'fruits-vegetables-nuts_100g',
+        'caffeine_100g',
+    ];
+
+    /** @var array */
+    private $data = [];
 
     /**
      * @param CsvFile $file
-     *
-     * @throws \League\Csv\CannotInsertRecord
      */
     public function __construct(CsvFile $file)
     {
         $path = $file->getValue();
 
-        $this->csv = Writer::createFromPath($path, 'r+');
+        $csvReader = Reader::createFromPath($path, 'r+');
 
-        foreach ($this->csv->fetch() as $result) {
+        $records = $csvReader->getRecords(self::WANTED_DATA);
+        foreach ($records as $offset => $data) {
+            foreach ($data as $key => $val) {
+                $this->data[$offset][$this->replaceKeys($key)] = $val;
+            }
 
-            $result['sugars_100g'];
-
-            $isHealthyValue = $this->isItHealthy($result) ? 1 : 0;
-            $this->csv->insertOne(['isHealthy']);
-            $this->csv->insertOne($isHealthyValue);
+            $isHealthyValue = $this->isItHealthy($offset) ? 1 : 0;
+            $this->data[$offset]['isHealthy'] = $isHealthyValue;
         }
     }
 
-    public function getResults(): string
+    public function asArray(): array
     {
-        return $this->csv;
+        return $this->data;
     }
 
-    public function export(): void
+    public function exportToCsv(): void
     {
 
     }
 
-    private function isItHealthy(array $data): bool
+    private function isItHealthy(int $offset): bool
     {
-        return (int)$data['sugars_100g'] > self::MAXIMUM_HEALTHY_SUGAR;
+        return $this->isTooMuchSugar($offset) && $this->isTooMuchSalt($offset) && $this->isAlcohol($offset);
+    }
+
+    private function isTooMuchSugar(int $offset): bool
+    {
+        return (int)$this->data[$offset]['sugar'] > self::MAXIMUM_HEALTHY_SUGAR;
+    }
+
+    private function isTooMuchSalt(int $offset): bool
+    {
+        return (int)$this->data[$offset]['salt'] > self::MAXIMUM_HEALTHY_SALT;
+    }
+
+    private function isAlcohol(int $offset): bool
+    {
+        return (int)$this->data[$offset]['alcohol'] === 0;
+    }
+
+    private function replaceKeys(string $keyName): string
+    {
+        $search = [
+            'product_name',
+            'sugars_100g',
+            'salt_100g',
+            'alcohol_100g',
+        ];
+
+        $replace = [
+            'name',
+            'sugar',
+            'salt',
+            'alcohol',
+        ];
+
+        return str_replace($search, $replace, $keyName);
     }
 }
