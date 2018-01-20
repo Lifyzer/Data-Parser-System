@@ -10,11 +10,13 @@ declare(strict_types=1);
 namespace Lifyzer\Parser;
 
 use League\Csv\Reader;
+use League\Csv\XMLConverter;
 use Lifyzer\Parser\DbProductColumns as DbColumn;
 
 class Converter
 {
-    private const EXPORT_FILENAME = 'food-database.sql';
+    public const FILENAME_EXPORT = 'food-database.xml';
+
     private const MAXIMUM_HEALTHY_SUGAR = 20;
     private const MAXIMUM_HEALTHY_SALT = 20;
     private const DANGER_LEVEL = 5;
@@ -78,10 +80,19 @@ class Converter
         return $this->data;
     }
 
-    public function exportToCsv(): void
+    public function asXml(): string
     {
+        $converter = (new XMLConverter())
+            ->rootElement('csv')
+            ->recordElement('record', 'offset')
+            ->fieldElement('field', 'name');
 
+        $dom = $converter->convert($this->data);
+        $dom->formatOutput = true;
+
+        return htmlentities($dom->saveXML());
     }
+
 
     private function isNotHealthy(int $offset): bool
     {
