@@ -68,10 +68,10 @@ class Converter
 
         foreach ($records as $offset => $data) {
             foreach ($data as $key => $val) {
-                $this->data[$offset][$this->replaceKeys($key)] = $val;
+                $this->data[$offset][$this->replaceKeys($key)] = $val ?? '';
             }
 
-            $this->data[$offset][DbColumn::IS_HEALTHY] = (string)$this->isNotHealthy($offset) ? 0 : 1;
+            $this->data[$offset][DbColumn::IS_HEALTHY] = (string)$this->isNotHealthy($offset) ? '0' : '1';
         }
     }
 
