@@ -22,7 +22,7 @@ class CsvFileTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidFilenames
+     * @dataProvider invalidFilenamesProvider
      * @expectedException \Lifyzer\Parser\Exception\InvalidFileException
      * @expectedExceptionCode \Lifyzer\Parser\Exception\InvalidFileException::WRONG_EXTENSION
      */
@@ -40,7 +40,7 @@ class CsvFileTest extends TestCase
         new CsvFile('/var/www/html/a.csv');
     }
 
-    public function invalidFilenames(): array
+    public function invalidFilenamesProvider(): array
     {
         return [
             ['blabla.doc'],
