@@ -71,7 +71,7 @@ class Converter
                 $this->data[$offset][$this->replaceKeys($key)] = $val ?? '';
             }
 
-            $this->data[$offset][DbColumn::IS_HEALTHY] = (string)$this->isNotHealthy($offset) ? '0' : '1';
+            $this->data[$offset][DbColumn::IS_HEALTHY] = $this->isNotHealthy($offset) ? '0' : '1';
         }
     }
 
