@@ -1,11 +1,11 @@
 # 🍏 Lifyzer Data Parser 🍓
 
-Simple script that parses data from open source food databases to the standard Lifyzer food DB structure
+_Simple script that parses data from open source food databases to the standard Lifyzer food DB structure._
 
 
 ## The Requirements
 
-* 🐘 PHP 7.1 or higher
+* 🐘 [PHP 7.1](http://php.net/releases/7_1_0.php) or higher
 * [Composer](https://getcomposer.org)
 
 
