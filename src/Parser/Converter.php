@@ -59,6 +59,18 @@ class Converter
         'dextrose' => 2,
     ];
 
+    private const GOOD_INGREDIENTS = [
+        'apples' => 1, // should be more than one
+        'broccoli' => 3,
+        'lentil' => 1,
+        'spinach' => 1,
+        'walnuts' => 1, // should be more than one
+        'chestnuts' => 1, // should be more than one
+        'avocados' => 1, // should be more than one
+        'lemon' => 1,
+        'antioxidant' => 1,
+    ];
+
     /** @var array */
     private $data = [];
 
@@ -96,7 +108,7 @@ class Converter
 
     private function isNotHealthy(int $offset): bool
     {
-        return $this->areManyBadIngredients($offset) || $this->isTooMuchSugar($offset) || $this->isTooMuchSalt($offset) || $this->isAlcohol($offset);
+        return $this->areBadIngredients($offset) || $this->isTooMuchSugar($offset) || $this->isTooMuchSalt($offset) || $this->isAlcohol($offset);
     }
 
     private function isTooMuchSugar(int $offset): bool
@@ -104,17 +116,29 @@ class Converter
         return (int)$this->data[$offset]['sugar'] > self::MAXIMUM_HEALTHY_SUGAR;
     }
 
-    private function areManyBadIngredients(int $offset): bool
+    private function areBadIngredients(int $offset): bool
     {
-        if (empty($this->data[$offset]['ingredients_text']) || strlen($this->data[$offset]['ingredients_text']) <= self::MINIMUM_INGREDIENT_LENGTH) {
+        if (empty($this->data[$offset][DbColumn::INGREDIENTS]) || strlen($this->data[$offset][DbColumn::INGREDIENTS]) <= self::MINIMUM_INGREDIENT_LENGTH) {
             return false;
         }
 
-        $dangerLevel = 0;
+        $dangerLevel = 0; // neutral level
 
+        // Increase the danger lever if "dangerous" ingredients are found
         foreach (self::BAD_INGREDIENTS as $name => $level) {
-            if (stripos($this->data[$offset]['ingredients_text'], $name) !== false) {
+            if (stripos($this->data[$offset][DbColumn::INGREDIENTS], $name) !== false) {
                 $dangerLevel += $level;
+            }
+        }
+
+        // Decrease the danger lever if "healthy" ingredients are found
+        foreach (self::GOOD_INGREDIENTS as $name => $level) {
+            if (stripos($this->data[$offset][DbColumn::INGREDIENTS], $name) !== false) {
+                if ($dangerLevel === 0) {
+                    break; // Cannot go under zero
+                }
+
+                $dangerLevel -= $level;
             }
         }
 
