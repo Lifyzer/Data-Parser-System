@@ -25,7 +25,7 @@ require 'vendor/autoload.php';
 $fullPathProviderDb = __DIR__ . '/data/providers/en.openfoodfacts.org.products.csv';
 $fullPathOutputDb = __DIR__ . '/data/output/' . Converter::FILENAME_EXPORT;
 
-$file = (new CsvFile($fullPathFile))->getValue();
+$file = (new CsvFile($fullPathProviderDb))->getValue();
 $csvReader = Reader::createFromPath($file, 'r+');
 $converter = new Converter($csvReader);
 file_put_contents($fullPathOutputDb, $converter->asXml());
