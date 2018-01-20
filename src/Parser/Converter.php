@@ -16,6 +16,8 @@ class Converter
     private const EXPORT_FILENAME = 'food-database.sql';
     private const MAXIMUM_HEALTHY_SUGAR = 20;
     private const MAXIMUM_HEALTHY_SALT = 20;
+    private const DANGER_LEVEL = 5;
+    private const MINIMUM_INGREDIENT_LENGTH = 5;
 
     private const WANTED_DATA = [
         'product_name',
@@ -44,6 +46,14 @@ class Converter
         'cacao_100g',
         'fruits-vegetables-nuts_100g',
         'caffeine_100g',
+    ];
+
+    private const BAD_INGREDIENTS = [
+        'emulsifier' => 3,
+        'additive' => 3,
+        'stabiliser' => 2,
+        'aspartame' => 5,
+        'dextrose' => 2,
     ];
 
     /** @var array */
@@ -81,12 +91,29 @@ class Converter
 
     private function isItHealthy(int $offset): bool
     {
-        return $this->isTooMuchSugar($offset) && $this->isTooMuchSalt($offset) && $this->isAlcohol($offset);
+        return $this->areManyBadIngredients($offset) && $this->isTooMuchSugar($offset) && $this->isTooMuchSalt($offset) && $this->isAlcohol($offset);
     }
 
     private function isTooMuchSugar(int $offset): bool
     {
         return (int)$this->data[$offset]['sugar'] > self::MAXIMUM_HEALTHY_SUGAR;
+    }
+
+    private function areManyBadIngredients(int $offset): bool
+    {
+        if (empty($this->data[$offset]['ingredients_text']) || strlen($this->data[$offset]['ingredients_text']) <= self::MINIMUM_INGREDIENT_LENGTH) {
+            return false;
+        }
+
+        $dangerLevel = 0;
+
+        foreach (self::BAD_INGREDIENTS as $name => $level) {
+            if (stripos($this->data[$offset]['ingredients_text'], $name) !== false) {
+                $dangerLevel += $level;
+            }
+        }
+
+        return $dangerLevel >= self::DANGER_LEVEL;
     }
 
     private function isTooMuchSalt(int $offset): bool
