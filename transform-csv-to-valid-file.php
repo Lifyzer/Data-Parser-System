@@ -22,11 +22,12 @@ if (!ini_get("auto_detect_line_endings")) {
 
 require 'vendor/autoload.php';
 
-$fullPathFile = __DIR__ . '/data/providers/en.openfoodfacts.org.products.csv';
+$fullPathProviderDb = __DIR__ . '/data/providers/en.openfoodfacts.org.products.csv';
+$fullPathOutputDb = __DIR__ . '/data/output/' . Converter::FILENAME_EXPORT;
 
 $file = (new CsvFile($fullPathFile))->getValue();
 $csvReader = Reader::createFromPath($file, 'r+');
 $converter = new Converter($csvReader);
-$results = $converter->asArray();
+file_put_contents($fullPathOutputDb, $converter->asXml());
 
-var_dump($results);
+echo 'The DB has been generated in: ' . $fullPathOutputDb;
