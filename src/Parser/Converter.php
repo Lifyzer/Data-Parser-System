@@ -74,8 +74,7 @@ class Converter
                 $this->data[$offset][$this->replaceKeys($key)] = $val;
             }
 
-            $isHealthyValue = $this->isItHealthy($offset) ? 1 : 0;
-            $this->data[$offset]['isHealthy'] = $isHealthyValue;
+            $this->data[$offset]['isHealthy'] = (string) $this->isNotHealthy($offset) ? 0 : 1;
         }
     }
 
@@ -89,9 +88,9 @@ class Converter
 
     }
 
-    private function isItHealthy(int $offset): bool
+    private function isNotHealthy(int $offset): bool
     {
-        return $this->areManyBadIngredients($offset) && $this->isTooMuchSugar($offset) && $this->isTooMuchSalt($offset) && $this->isAlcohol($offset);
+        return $this->areManyBadIngredients($offset) || $this->isTooMuchSugar($offset) || $this->isTooMuchSalt($offset) || $this->isAlcohol($offset);
     }
 
     private function isTooMuchSugar(int $offset): bool
