@@ -28,66 +28,128 @@ class ConverterTest extends TestCase
             'additives_en' => '30',
             'sugar' => '300',
             'cholesterol_100g' => '200',
-            'saturated-fat_100g' => null,
-            'fiber_100g' => null,
-            'proteins_100g' => null,
-            'casein_100g' => null,
-            'salt' => null,
-            'sodium_100g' => null,
-            'alcohol' => null,
-            'vitamin-a_100g' => null,
-            'vitamin-c_100g' => null,
-            'vitamin-d_100g' => null,
-            'vitamin-e_100g' => null,
-            'vitamin-k_100g' => null,
-            'calcium_100g' => null,
-            'magnesium_100g' => null,
-            'iron_100g' => null,
-            'zinc_100g' => null,
-            'cacao_100g' => null,
-            'fruits-vegetables-nuts_100g' => null,
-            'caffeine_100g' => null,
-            'isHealthy' => 0
+            'saturated-fat_100g' => '',
+            'fiber_100g' => '',
+            'proteins_100g' => '',
+            'casein_100g' => '',
+            'salt' => '',
+            'sodium_100g' => '',
+            'alcohol' => '',
+            'vitamin-a_100g' => '',
+            'vitamin-c_100g' => '',
+            'vitamin-d_100g' => '',
+            'vitamin-e_100g' => '',
+            'vitamin-k_100g' => '',
+            'calcium_100g' => '',
+            'magnesium_100g' => '',
+            'iron_100g' => '',
+            'zinc_100g' => '',
+            'cacao_100g' => '',
+            'fruits-vegetables-nuts_100g' => '',
+            'caffeine_100g' => '',
+            'isHealthy' => '0'
         ],
-            $converter->asArray()[1]
-        );
+            $converter->asArray()[1]);
     }
 
-    public function testXmlConverted()
+    public function testXmlConverted(): void
     {
         $converter = $this->initializeConversion();
 
-        $this->assertSame([
-            'name' => 'NuutellaaPH',
-            'countries_en' => 'sugar',
-            'ingredients_text' => ' chocolate butter',
-            'allergens_en' => ' hazelnut',
-            'additives_en' => '30',
-            'sugar' => '300',
-            'cholesterol_100g' => '200',
-            'saturated-fat_100g' => null,
-            'fiber_100g' => null,
-            'proteins_100g' => null,
-            'casein_100g' => null,
-            'salt' => null,
-            'sodium_100g' => null,
-            'alcohol' => null,
-            'vitamin-a_100g' => null,
-            'vitamin-c_100g' => null,
-            'vitamin-d_100g' => null,
-            'vitamin-e_100g' => null,
-            'vitamin-k_100g' => null,
-            'calcium_100g' => null,
-            'magnesium_100g' => null,
-            'iron_100g' => null,
-            'zinc_100g' => null,
-            'cacao_100g' => null,
-            'fruits-vegetables-nuts_100g' => null,
-            'caffeine_100g' => null,
-            'isHealthy' => 0
-        ],
-            $converter->asXml()
-        );
+        $expected = <<<'XML'
+<?xml version="1.0"?>
+<csv>
+  <record offset="0">
+    <field name="name">product_name</field>
+    <field name="countries_en">ingredients_text</field>
+    <field name="ingredients_text">proteins_100g</field>
+    <field name="allergens_en">sugars_100g</field>
+    <field name="additives_en">cacao_100g</field>
+    <field name="sugar"></field>
+    <field name="cholesterol_100g"></field>
+    <field name="saturated-fat_100g"></field>
+    <field name="fiber_100g"></field>
+    <field name="proteins_100g"></field>
+    <field name="casein_100g"></field>
+    <field name="salt"></field>
+    <field name="sodium_100g"></field>
+    <field name="alcohol"></field>
+    <field name="vitamin-a_100g"></field>
+    <field name="vitamin-c_100g"></field>
+    <field name="vitamin-d_100g"></field>
+    <field name="vitamin-e_100g"></field>
+    <field name="vitamin-k_100g"></field>
+    <field name="calcium_100g"></field>
+    <field name="magnesium_100g"></field>
+    <field name="iron_100g"></field>
+    <field name="zinc_100g"></field>
+    <field name="cacao_100g"></field>
+    <field name="fruits-vegetables-nuts_100g"></field>
+    <field name="caffeine_100g"></field>
+    <field name="isHealthy">0</field>
+  </record>
+  <record offset="1">
+    <field name="name">NuutellaaPH</field>
+    <field name="countries_en">sugar</field>
+    <field name="ingredients_text"> chocolate butter</field>
+    <field name="allergens_en"> hazelnut</field>
+    <field name="additives_en">30</field>
+    <field name="sugar">300</field>
+    <field name="cholesterol_100g">200</field>
+    <field name="saturated-fat_100g"></field>
+    <field name="fiber_100g"></field>
+    <field name="proteins_100g"></field>
+    <field name="casein_100g"></field>
+    <field name="salt"></field>
+    <field name="sodium_100g"></field>
+    <field name="alcohol"></field>
+    <field name="vitamin-a_100g"></field>
+    <field name="vitamin-c_100g"></field>
+    <field name="vitamin-d_100g"></field>
+    <field name="vitamin-e_100g"></field>
+    <field name="vitamin-k_100g"></field>
+    <field name="calcium_100g"></field>
+    <field name="magnesium_100g"></field>
+    <field name="iron_100g"></field>
+    <field name="zinc_100g"></field>
+    <field name="cacao_100g"></field>
+    <field name="fruits-vegetables-nuts_100g"></field>
+    <field name="caffeine_100g"></field>
+    <field name="isHealthy">0</field>
+  </record>
+  <record offset="2">
+    <field name="name">Bonne MAman</field>
+    <field name="countries_en"> Strawberry</field>
+    <field name="ingredients_text"> sugar</field>
+    <field name="allergens_en"> jam</field>
+    <field name="additives_en"> strawberry</field>
+    <field name="sugar">0</field>
+    <field name="cholesterol_100g">200</field>
+    <field name="saturated-fat_100g">0</field>
+    <field name="fiber_100g"></field>
+    <field name="proteins_100g"></field>
+    <field name="casein_100g"></field>
+    <field name="salt"></field>
+    <field name="sodium_100g"></field>
+    <field name="alcohol"></field>
+    <field name="vitamin-a_100g"></field>
+    <field name="vitamin-c_100g"></field>
+    <field name="vitamin-d_100g"></field>
+    <field name="vitamin-e_100g"></field>
+    <field name="vitamin-k_100g"></field>
+    <field name="calcium_100g"></field>
+    <field name="magnesium_100g"></field>
+    <field name="iron_100g"></field>
+    <field name="zinc_100g"></field>
+    <field name="cacao_100g"></field>
+    <field name="fruits-vegetables-nuts_100g"></field>
+    <field name="caffeine_100g"></field>
+    <field name="isHealthy">0</field>
+  </record>
+</csv>
+
+XML;
+        $this->assertSame($expected, $converter->asXml());
     }
 
     private function initializeConversion(): Converter
