@@ -9,30 +9,49 @@ declare(strict_types=1);
 
 namespace Lifyzer\Parser;
 
-use League\Csv\Reader;
+use League\Csv\Writer;
 
 class Converter
 {
     private const EXPORT_FILENAME = 'food-database.sql';
+    private const MAXIMUM_HEALTHY_SUGAR = 20;
 
+    /** @var Writer */
+    private $csv;
+
+    /**
+     * @param CsvFile $file
+     *
+     * @throws \League\Csv\CannotInsertRecord
+     */
     public function __construct(CsvFile $file)
     {
         $path = $file->getValue();
 
-        $csv = Reader::createFromPath($path, 'r');
+        $this->csv = Writer::createFromPath($path, 'r+');
 
-        if () {
-            $csv->insertOne($header);
+        foreach ($this->csv->fetch() as $result) {
+
+            $result['sugars_100g'];
+
+            $isHealthyValue = $this->isItHealthy($result) ? 1 : 0;
+            $this->csv->insertOne(['isHealthy']);
+            $this->csv->insertOne($isHealthyValue);
         }
     }
 
-    public function get()
+    public function getResults(): string
+    {
+        return $this->csv;
+    }
+
+    public function export(): void
     {
 
     }
 
-    private function doesItHealthy(): bool
+    private function isItHealthy(array $data): bool
     {
-        return true;
+        return (int)$data['sugars_100g'] > self::MAXIMUM_HEALTHY_SUGAR;
     }
 }
