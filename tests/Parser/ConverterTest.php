@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 class ConverterTest extends TestCase
 {
-    public function testArrayConverted()
+    public function testArrayConverted(): void
     {
         $converter = $this->initializeConversion();
 
@@ -103,7 +103,7 @@ class ConverterTest extends TestCase
         return new Converter($csvReader);
     }
 
-    private function getFixtureCsvData()
+    private function getFixtureCsvData(): string
     {
         return dirname(__DIR__) . '/fixtures/test-data.csv';
     }
