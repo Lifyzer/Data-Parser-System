@@ -11,4 +11,4 @@ _Simple script that parses data from open source food databases to the standard 
 
 ## Who Did This...? 😉
 
-Made with ❤️ by [Pierre-Henry Soria](http://ph7.me)! (and good health **thanks Lifyzer App**! 😸)
+Made with ❤️ by [Pierre-Henry Soria](http://ph7.me)! (and in good health **thanks Lifyzer App**! 😸)
