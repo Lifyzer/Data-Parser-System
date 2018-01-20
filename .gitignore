@@ -2,6 +2,8 @@ vendor
 coverage
 data/output/*
 !data/output/.gitkeep
+data/providers/*
+!data/providers/.gitkeep
 composer.lock
 composer.phar
 *.log
