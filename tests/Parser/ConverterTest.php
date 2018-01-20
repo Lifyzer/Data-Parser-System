@@ -9,10 +9,10 @@ declare(strict_types=1);
 
 namespace Lifyzer\Tests\Parser;
 
+use League\Csv\Reader;
 use Lifyzer\Parser\Converter;
 use Lifyzer\Parser\CsvFile;
 use PHPUnit\Framework\TestCase;
-use League\Csv\Reader;
 
 class ConverterTest extends TestCase
 {
