@@ -10,37 +10,58 @@ declare(strict_types=1);
 namespace Lifyzer\Tests\Parser;
 
 use Lifyzer\Parser\Converter;
+use Lifyzer\Parser\CsvFile;
 use PHPUnit\Framework\TestCase;
-use League\Csv\AbstractCsv;
-use Phake;
+use League\Csv\Reader;
 
 class ConverterTest extends TestCase
 {
-    /**
-     * @dataProvider dataProvider
-     */
-    public function testConverter(array $data)
+    public function testConverter()
     {
-        $abstractCsv = Phake::mock(AbstractCsv::class);
-        Phake::when($abstractCsv)->getRecords(Phake::anyParameters())->thenReturn($data);
+        /**
+         * @internal I decided not to mock the class and use fixture, in order to test
+         * CSV League behaviours and also because the CSV class is singleton
+         */
+        $fullPathFile = $this->getFixtureCsvData();
+        $file = (new CsvFile($fullPathFile))->getValue();
+        $csvReader = Reader::createFromPath($file, 'r+');
+        $converter = new Converter($csvReader);
 
-        $converter = new Converter($abstractCsv);
-
-        $this->assertSame([], $converter->asArray());
+        $this->assertSame([
+            'name' => 'NuutellaaPH',
+            'countries_en' => 'sugar',
+            'ingredients_text' => ' chocolate butter',
+            'allergens_en' => ' hazelnut',
+            'additives_en' => '30',
+            'sugar' => '300',
+            'cholesterol_100g' => '200',
+            'saturated-fat_100g' => null,
+            'fiber_100g' => null,
+            'proteins_100g' => null,
+            'casein_100g' => null,
+            'salt' => null,
+            'sodium_100g' => null,
+            'alcohol' => null,
+            'vitamin-a_100g' => null,
+            'vitamin-c_100g' => null,
+            'vitamin-d_100g' => null,
+            'vitamin-e_100g' => null,
+            'vitamin-k_100g' => null,
+            'calcium_100g' => null,
+            'magnesium_100g' => null,
+            'iron_100g' => null,
+            'zinc_100g' => null,
+            'cacao_100g' => null,
+            'fruits-vegetables-nuts_100g' => null,
+            'caffeine_100g' => null,
+            'isHealthy' => 0
+            ],
+            $converter->asArray()[1]
+        );
     }
 
-    public function dataProvider(): array
+    private function getFixtureCsvData()
     {
-        return [
-            [
-                [
-                    'product_name' => 'NuutellaaPH',
-                    'ingredients_text' => 'sugar, chocolate butter, hazelnut',
-                    'proteins_100g' => 30,
-                    'sugars_100g' => 300,
-                    'cacao_100g' => 200
-                ]
-            ]
-        ];
+        return dirname(__DIR__) . '/fixtures/test-data.csv';
     }
 }
