@@ -17,13 +17,15 @@ class Converter
 {
     public const FILENAME_EXPORT = 'food-database.xml';
 
-    private const MAXIMUM_HEALTHY_SUGAR = 20;
+    private const CSV_DELIMITER = ' ';
+    private const MAXIMUM_HEALTHY_SUGAR = 40;
     private const MAXIMUM_HEALTHY_SALT = 20;
     private const DANGER_LEVEL = 5;
     private const MINIMUM_INGREDIENT_LENGTH = 5;
 
     private const WANTED_DATA = [
         'product_name',
+        'image_front_small_url',
         //'countries_en',
         'ingredients_text',
         //'allergens_en',
@@ -57,6 +59,7 @@ class Converter
         'stabiliser' => 2,
         'aspartame' => 5,
         'dextrose' => 2,
+        'palm oil' => 2.5, // palm oil is carcinogenic (EFSA source)
     ];
 
     private const GOOD_INGREDIENTS = [
@@ -76,6 +79,7 @@ class Converter
 
     public function __construct(Reader $csvReader)
     {
+        $csvReader->setDelimiter(self::CSV_DELIMITER);
         $records = $csvReader->getRecords(self::WANTED_DATA);
 
         foreach ($records as $offset => $data) {
@@ -159,6 +163,7 @@ class Converter
     {
         $search = [
             'product_name',
+            'image_front_small_url',
             'ingredients_text',
             'sugars_100g',
             'salt_100g',
@@ -170,6 +175,7 @@ class Converter
 
         $replace = [
             DbColumn::PRODUCT_NAME,
+            DbColumn::IMAGE_URL,
             DbColumn::INGREDIENTS,
             DbColumn::SUGAR,
             DbColumn::SALT,
