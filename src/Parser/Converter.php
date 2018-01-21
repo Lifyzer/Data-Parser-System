@@ -118,12 +118,7 @@ class Converter
 
     private function isNotHealthy(int $offset): bool
     {
-        return $this->areBadIngredients($offset) || $this->isTooMuchSugar($offset) || $this->isTooMuchSalt($offset) || $this->isAlcohol($offset);
-    }
-
-    private function isTooMuchSugar(int $offset): bool
-    {
-        return (int)$this->data[$offset]['sugar'] > self::MAXIMUM_HEALTHY_SUGAR;
+        return $this->areBadIngredients($offset) || $this->isTooMuchSugar($offset) || $this->isTooFat($offset) || $this->isTooMuchSalt($offset) || $this->isAlcohol($offset);
     }
 
     private function areBadIngredients(int $offset): bool
@@ -155,14 +150,24 @@ class Converter
         return $dangerLevel >= self::DANGER_LEVEL;
     }
 
+    private function isTooMuchSugar(int $offset): bool
+    {
+        return (int)$this->data[$offset][DbColumn::SUGAR] > self::MAXIMUM_HEALTHY_SUGAR;
+    }
+
     private function isTooMuchSalt(int $offset): bool
     {
-        return (int)$this->data[$offset]['salt'] > self::MAXIMUM_HEALTHY_SALT;
+        return (int)$this->data[$offset][DbColumn::SALT] > self::MAXIMUM_HEALTHY_SALT;
+    }
+
+    private function isTooFat(int $offset): bool
+    {
+        return (int)$this->data[$offset][DbColumn::SATURATED_FATS] > self::MAXIMUM_HEALTHY_FAT;
     }
 
     private function isAlcohol(int $offset): bool
     {
-        return (int)$this->data[$offset]['alcohol'] === 0;
+        return (int)$this->data[$offset][DbColumn::ALCOHOL] === 0;
     }
 
     private function replaceKeys(string $keyName): string
