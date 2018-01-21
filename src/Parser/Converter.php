@@ -17,9 +17,10 @@ class Converter
 {
     public const FILENAME_EXPORT = 'food-database.xml';
 
-    private const CSV_DELIMITER = ' ';
-    private const MAXIMUM_HEALTHY_SUGAR = 40;
-    private const MAXIMUM_HEALTHY_SALT = 20;
+    private const CSV_DELIMITER = '	';
+    private const MAXIMUM_HEALTHY_SUGAR = 30;
+    private const MAXIMUM_HEALTHY_SALT = 12;
+    private const MAXIMUM_HEALTHY_FAT = 20;
     private const DANGER_LEVEL = 5;
     private const MINIMUM_INGREDIENT_LENGTH = 5;
 
@@ -80,11 +81,16 @@ class Converter
     public function __construct(Reader $csvReader)
     {
         $csvReader->setDelimiter(self::CSV_DELIMITER);
-        $records = $csvReader->getRecords(self::WANTED_DATA);
+        $csvReader->setHeaderOffset(0);
+        $records = $csvReader->getRecords();
 
         foreach ($records as $offset => $data) {
             foreach ($data as $key => $val) {
-                $this->data[$offset][$this->replaceKeys($key)] = $val ?? '';
+                if (in_array($key, self::WANTED_DATA, true)) {
+                    $this->data[$offset][$this->replaceKeys($key)] = $val ?? '';
+                } else {
+                    continue;
+                }
             }
 
             $this->data[$offset][DbColumn::IS_HEALTHY] = $this->isNotHealthy($offset) ? '0' : '1';
