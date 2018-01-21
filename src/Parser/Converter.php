@@ -82,8 +82,8 @@ class Converter
     {
         $csvReader->setDelimiter(self::CSV_DELIMITER);
         $csvReader->setHeaderOffset(0);
-        $records = $csvReader->getRecords();
 
+        $records = $csvReader->getRecords();
         foreach ($records as $offset => $data) {
             foreach ($data as $key => $val) {
                 if (in_array($key, self::WANTED_DATA, true)) {
@@ -167,7 +167,7 @@ class Converter
 
     private function isAlcohol(int $offset): bool
     {
-        return (int)$this->data[$offset][DbColumn::ALCOHOL] === 0;
+        return (int)$this->data[$offset][DbColumn::ALCOHOL] !== 0;
     }
 
     private function replaceKeys(string $keyName): string
