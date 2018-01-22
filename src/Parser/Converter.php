@@ -65,14 +65,15 @@ class Converter
 
     private const GOOD_INGREDIENTS = [
         'apples' => 1, // should be more than one
-        'broccoli' => 3,
-        'lentil' => 1,
+        'broccoli' => 2.5,
+        'lentil' => 2,
         'spinach' => 1,
         'walnuts' => 1, // should be more than one
         'chestnuts' => 1, // should be more than one
         'avocados' => 1, // should be more than one
         'lemon' => 1,
-        'antioxidant' => 1,
+        'antioxidant' => 2,
+        'sesame' => 1.5
     ];
 
     /** @var array */
