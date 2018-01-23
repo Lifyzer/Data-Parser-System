@@ -32,13 +32,14 @@ class Converter
         //'allergens_en',
         //'additives_en',
         'sugars_100g',
+        'carbohydrates_100g',
         //'cholesterol_100g',
         'saturated-fat_100g',
         'fiber_100g',
         'proteins_100g',
         //'casein_100g',
         'salt_100g',
-        //'sodium_100g',
+        'sodium_100g',
         'alcohol_100g',
         //'vitamin-a_100g',
         //'vitamin-c_100g',
@@ -178,11 +179,14 @@ class Converter
             'image_front_small_url',
             'ingredients_text',
             'sugars_100g',
+            'carbohydrates_100g',
             'salt_100g',
-            'alcohol_100g',
+            'sodium_100g',
             'proteins_100g',
             'saturated-fat_100g',
             'fiber_100g',
+
+            'alcohol_100g',
         ];
 
         $replace = [
@@ -190,11 +194,13 @@ class Converter
             DbColumn::IMAGE_URL,
             DbColumn::INGREDIENTS,
             DbColumn::SUGAR,
+            DbColumn::CARBOHYDRATE,
             DbColumn::SALT,
-            DbColumn::ALCOHOL,
+            DbColumn::SODIUM,
             DbColumn::PROTEIN,
             DbColumn::SATURATED_FATS,
             DbColumn::DIETARY_FIBER,
+            DbColumn::ALCOHOL,
         ];
 
         return str_replace($search, $replace, $keyName);

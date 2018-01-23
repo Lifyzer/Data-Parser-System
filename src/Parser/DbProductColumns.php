@@ -13,6 +13,7 @@ class DbProductColumns
 {
     public const PRODUCT_NAME = 'name';
     public const IMAGE_URL = 'image';
+    public const INGREDIENTS = 'ingredients';
     public const CALORIES = 'calories';
     public const IS_ORGANIC = 'isOrganic';
     public const IS_HEALTHY = 'isHealthy';
@@ -24,6 +25,6 @@ class DbProductColumns
     public const SALT = 'salt';
     public const CARBOHYDRATE = 'carbohydrate';
     public const DIETARY_FIBER = 'dietaryFiber';
+    public const SODIUM = 'sodium';
     public const ALCOHOL = 'alcohol';
-    public const INGREDIENTS = 'ingredients';
 }
