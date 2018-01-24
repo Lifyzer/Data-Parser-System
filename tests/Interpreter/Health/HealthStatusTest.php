@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Lifyzer\Tests\Parser;
+namespace Lifyzer\Tests\Interpreter\Health;
 
 use Lifyzer\Interpreter\Health\HealthStatus;
 use Lifyzer\Parser\DbProductColumns as DbColumn;
