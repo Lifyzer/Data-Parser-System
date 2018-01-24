@@ -51,31 +51,16 @@ class Converter
         //'caffeine_100g',
     ];
 
-    private const BAD_INGREDIENTS = [
-        'emulsifier' => 3,
-        'additive' => 3,
-        'stabiliser' => 2,
-        'aspartame' => 5,
-        'dextrose' => 2,
-        'palm oil' => 2.5, // palm oil is carcinogenic (EFSA source)
-    ];
-
-    private const GOOD_INGREDIENTS = [
-        'apples' => 1, // should be more than one
-        'broccoli' => 2.5,
-        'lentil' => 2,
-        'spinach' => 1,
-        'walnuts' => 1, // should be more than one
-        'chestnuts' => 1, // should be more than one
-        'avocados' => 1, // should be more than one
-        'lemon' => 1,
-        'antioxidant' => 2,
-        'sesame' => 1.5
-    ];
-
     /** @var array */
     private $data = [];
 
+    /**
+     * Converter constructor.
+     *
+     * @param Reader $csvReader
+     *
+     * @throws \League\Csv\Exception
+     */
     public function __construct(Reader $csvReader)
     {
         $csvReader->setDelimiter(self::CSV_DELIMITER);
