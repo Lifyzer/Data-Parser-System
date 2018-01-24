@@ -13,11 +13,11 @@ use Lifyzer\Parser\DbProductColumns as DbColumn;
 
 class HealthStatus
 {
+    private const MINIMUM_INGREDIENT_LENGTH = 5;
     private const MAXIMUM_HEALTHY_SUGAR = 30;
     private const MAXIMUM_HEALTHY_SALT = 12;
     private const MAXIMUM_HEALTHY_FAT = 20;
     private const DANGER_LEVEL = 5;
-    private const MINIMUM_INGREDIENT_LENGTH = 5;
 
     private const BAD_INGREDIENTS = [
         'emulsifier' => 3,
