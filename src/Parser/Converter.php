@@ -11,6 +11,7 @@ namespace Lifyzer\Parser;
 
 use League\Csv\Reader;
 use League\Csv\XMLConverter;
+use Lifyzer\Interpreter\Health\HealthStatus;
 use Lifyzer\Parser\DbProductColumns as DbColumn;
 
 class Converter
@@ -18,11 +19,6 @@ class Converter
     public const FILENAME_EXPORT = 'food-database.xml';
 
     private const CSV_DELIMITER = '	';
-    private const MAXIMUM_HEALTHY_SUGAR = 30;
-    private const MAXIMUM_HEALTHY_SALT = 12;
-    private const MAXIMUM_HEALTHY_FAT = 20;
-    private const DANGER_LEVEL = 5;
-    private const MINIMUM_INGREDIENT_LENGTH = 5;
 
     private const WANTED_DATA = [
         'product_name',
@@ -88,14 +84,15 @@ class Converter
         $records = $csvReader->getRecords();
         foreach ($records as $offset => $data) {
             foreach ($data as $key => $val) {
-                if (in_array($key, self::WANTED_DATA, true)) {
+                if ($this->isCsvKeyValid($key)) {
                     $this->data[$offset][$this->replaceKeys($key)] = $val ?? '';
                 } else {
                     continue;
                 }
             }
 
-            $this->data[$offset][DbColumn::IS_HEALTHY] = $this->isNotHealthy($offset) ? '0' : '1';
+            $healthStatus = new HealthStatus($this->data, $offset);
+            $this->data[$offset][DbColumn::IS_HEALTHY] = $healthStatus->isHealthy() ? '1' : '0';
         }
     }
 
@@ -117,59 +114,9 @@ class Converter
         return $dom->saveXML();
     }
 
-
-    private function isNotHealthy(int $offset): bool
+    private function isCsvKeyValid(string $key): bool
     {
-        return $this->areBadIngredients($offset) || $this->isTooMuchSugar($offset) || $this->isTooFat($offset) || $this->isTooMuchSalt($offset) || $this->isAlcohol($offset);
-    }
-
-    private function areBadIngredients(int $offset): bool
-    {
-        if (empty($this->data[$offset][DbColumn::INGREDIENTS]) || strlen($this->data[$offset][DbColumn::INGREDIENTS]) <= self::MINIMUM_INGREDIENT_LENGTH) {
-            return false;
-        }
-
-        $dangerLevel = 0; // neutral level
-
-        // Increase the danger lever if "dangerous" ingredients are found
-        foreach (self::BAD_INGREDIENTS as $name => $level) {
-            if (stripos($this->data[$offset][DbColumn::INGREDIENTS], $name) !== false) {
-                $dangerLevel += $level;
-            }
-        }
-
-        // Decrease the danger lever if "healthy" ingredients are found
-        foreach (self::GOOD_INGREDIENTS as $name => $level) {
-            if (stripos($this->data[$offset][DbColumn::INGREDIENTS], $name) !== false) {
-                if ($dangerLevel === 0) {
-                    break; // Cannot go under zero
-                }
-
-                $dangerLevel -= $level;
-            }
-        }
-
-        return $dangerLevel >= self::DANGER_LEVEL;
-    }
-
-    private function isTooMuchSugar(int $offset): bool
-    {
-        return (int)$this->data[$offset][DbColumn::SUGAR] > self::MAXIMUM_HEALTHY_SUGAR;
-    }
-
-    private function isTooMuchSalt(int $offset): bool
-    {
-        return (int)$this->data[$offset][DbColumn::SALT] > self::MAXIMUM_HEALTHY_SALT;
-    }
-
-    private function isTooFat(int $offset): bool
-    {
-        return (int)$this->data[$offset][DbColumn::SATURATED_FATS] > self::MAXIMUM_HEALTHY_FAT;
-    }
-
-    private function isAlcohol(int $offset): bool
-    {
-        return (int)$this->data[$offset][DbColumn::ALCOHOL] !== 0;
+        return in_array($key, self::WANTED_DATA, true);
     }
 
     private function replaceKeys(string $keyName): string
