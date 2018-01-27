@@ -71,13 +71,11 @@ class Converter
             foreach ($data as $key => $val) {
                 if ($this->isCsvKeyValid($key) && $this->isProductNameValid($data)) {
                     $this->validData[$offset][$this->replaceKeys($key)] = $val ?? '';
+                    $this->addHealthyField($offset);
                 } else {
                     continue;
                 }
             }
-
-            $healthStatus = new HealthStatus($this->validData, $offset);
-            $this->validData[$offset][DbColumn::IS_HEALTHY] = $healthStatus->isHealthy() ? '1' : '0';
         }
     }
 
@@ -97,6 +95,12 @@ class Converter
         $dom->formatOutput = true;
 
         return $dom->saveXML();
+    }
+
+    private function addHealthyField(int $offset): void
+    {
+        $healthStatus = new HealthStatus($this->validData, $offset);
+        $this->validData[$offset][DbColumn::IS_HEALTHY] = $healthStatus->isHealthy() ? '1' : '0';
     }
 
     private function isCsvKeyValid(string $key): bool
