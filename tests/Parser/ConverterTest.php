@@ -96,6 +96,18 @@ XML;
         $this->assertSame($expected, $converter->asXml());
     }
 
+
+    public function testProductDataWithoutName(): void
+    {
+        $fullPathFile = $this->getFixtureCsvDataWithoutProductName();
+        $file = (new CsvFile($fullPathFile))->getValue();
+        $csvReader = Reader::createFromPath($file, 'r+');
+
+        $converter =  new Converter($csvReader);
+
+        $this->assertSame([], $converter->asArray());
+    }
+
     private function initializeConversion(): Converter
     {
         /**
@@ -112,5 +124,10 @@ XML;
     private function getFixtureCsvData(): string
     {
         return dirname(__DIR__) . '/fixtures/test-data.csv';
+    }
+
+    private function getFixtureCsvDataWithoutProductName(): string
+    {
+        return dirname(__DIR__) . '/fixtures/test-empty-product-name-data.csv';
     }
 }
