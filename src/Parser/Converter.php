@@ -117,7 +117,6 @@ class Converter
             'proteins_100g',
             'saturated-fat_100g',
             'fiber_100g',
-
             'alcohol_100g',
         ];
 
