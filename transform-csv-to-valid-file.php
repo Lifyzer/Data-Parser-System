@@ -22,7 +22,7 @@ if (!ini_get('auto_detect_line_endings')) {
 
 require 'vendor/autoload.php';
 
-$fullPathProviderDb = __DIR__ . '/data/providers/en.openfoodfacts.org.products.csv';
+$fullPathProviderDb = __DIR__ . '/data/providers/openfoodfacts_search.csv';
 $fullPathOutputDb = __DIR__ . '/data/output/' . Converter::FILENAME_EXPORT;
 
 $file = (new CsvFile($fullPathProviderDb))->getValue();

@@ -103,7 +103,7 @@ XML;
         $file = (new CsvFile($fullPathFile))->getValue();
         $csvReader = Reader::createFromPath($file, 'r+');
 
-        $converter =  new Converter($csvReader);
+        $converter = new Converter($csvReader);
 
         $this->assertSame([], $converter->asArray());
     }
