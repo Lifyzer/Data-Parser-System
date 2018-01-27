@@ -136,4 +136,9 @@ class Converter
 
         return str_replace($search, $replace, $keyName);
     }
+
+    private function isProductNameValid(array $data): bool
+    {
+        return !empty($data['product_name']);
+    }
 }
