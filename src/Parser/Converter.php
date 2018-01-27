@@ -52,7 +52,7 @@ class Converter
     ];
 
     /** @var array */
-    private $data = [];
+    private $validData = [];
 
     /**
      * Converter constructor.
@@ -69,21 +69,21 @@ class Converter
         $records = $csvReader->getRecords();
         foreach ($records as $offset => $data) {
             foreach ($data as $key => $val) {
-                if ($this->isCsvKeyValid($key)) {
-                    $this->data[$offset][$this->replaceKeys($key)] = $val ?? '';
+                if ($this->isCsvKeyValid($key) && $this->isProductNameValid($data)) {
+                    $this->validData[$offset][$this->replaceKeys($key)] = $val ?? '';
                 } else {
                     continue;
                 }
             }
 
-            $healthStatus = new HealthStatus($this->data, $offset);
-            $this->data[$offset][DbColumn::IS_HEALTHY] = $healthStatus->isHealthy() ? '1' : '0';
+            $healthStatus = new HealthStatus($this->validData, $offset);
+            $this->validData[$offset][DbColumn::IS_HEALTHY] = $healthStatus->isHealthy() ? '1' : '0';
         }
     }
 
     public function asArray(): array
     {
-        return $this->data;
+        return $this->validData;
     }
 
     public function asXml(): string
@@ -93,7 +93,7 @@ class Converter
             ->recordElement('record', 'offset')
             ->fieldElement('field', 'name');
 
-        $dom = $converter->convert($this->data);
+        $dom = $converter->convert($this->validData);
         $dom->formatOutput = true;
 
         return $dom->saveXML();
