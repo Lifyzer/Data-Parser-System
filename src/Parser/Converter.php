@@ -68,13 +68,13 @@ class Converter
 
         $records = $csvReader->getRecords();
         foreach ($records as $offset => $data) {
-            foreach ($data as $key => $val) {
-                if ($this->isCsvKeyValid($key) && $this->isProductNameValid($data)) {
-                    $this->validData[$offset][$this->replaceKeys($key)] = $val ?? '';
-                    $this->addHealthyField($offset);
-                } else {
-                    continue;
+            if ($this->isProductNameValid($data)) {
+                foreach ($data as $key => $val) {
+                    if ($this->isCsvKeyValid($key)) {
+                        $this->validData[$offset][$this->replaceKeys($key)] = $val ?? '';
+                    }
                 }
+                $this->addHealthyField($offset);
             }
         }
     }

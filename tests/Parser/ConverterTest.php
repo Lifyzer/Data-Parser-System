@@ -24,7 +24,6 @@ class ConverterTest extends TestCase
             [
                 1 => [
                     'name' => 'Marmite yeast extract',
-                    'isHealthy' => '1',
                     'ingredients' => 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.',
                     'image' => 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg',
                     'saturatedFats' => '0',
@@ -34,11 +33,11 @@ class ConverterTest extends TestCase
                     'protein' => '39',
                     'salt' => '9.906',
                     'sodium' => '3.9',
-                    'alcohol' => ''
+                    'alcohol' => '',
+                    'isHealthy' => '1'
                 ],
                 2 => [
                     'name' => 'Yeast Extract',
-                    'isHealthy' => '1',
                     'ingredients' => 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).',
                     'image' => '',
                     'saturatedFats' => '',
@@ -48,7 +47,8 @@ class ConverterTest extends TestCase
                     'protein' => '50',
                     'salt' => '12.7',
                     'sodium' => '5',
-                    'alcohol' => ''
+                    'alcohol' => '',
+                    'isHealthy' => '1'
                 ]
             ],
             $converter->asArray()
@@ -61,10 +61,9 @@ class ConverterTest extends TestCase
 
         $expected = <<<'XML'
 <?xml version="1.0"?>
-<csv>
-  <record offset="1">
+<resultset>
+  <row>
     <field name="name">Marmite yeast extract</field>
-    <field name="isHealthy">1</field>
     <field name="ingredients">Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.</field>
     <field name="image">https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg</field>
     <field name="saturatedFats">0</field>
@@ -75,10 +74,10 @@ class ConverterTest extends TestCase
     <field name="salt">9.906</field>
     <field name="sodium">3.9</field>
     <field name="alcohol"></field>
-  </record>
-  <record offset="2">
-    <field name="name">Yeast Extract</field>
     <field name="isHealthy">1</field>
+  </row>
+  <row>
+    <field name="name">Yeast Extract</field>
     <field name="ingredients">Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).</field>
     <field name="image"></field>
     <field name="saturatedFats"></field>
