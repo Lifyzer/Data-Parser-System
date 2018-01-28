@@ -88,8 +88,9 @@ class ConverterTest extends TestCase
     <field name="salt">12.7</field>
     <field name="sodium">5</field>
     <field name="alcohol"></field>
-  </record>
-</csv>
+    <field name="isHealthy">1</field>
+  </row>
+</resultset>
 
 XML;
         $this->assertSame($expected, $converter->asXml());

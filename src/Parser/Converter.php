@@ -87,8 +87,8 @@ class Converter
     public function asXml(): string
     {
         $converter = (new XMLConverter())
-            ->rootElement('csv')
-            ->recordElement('record', 'offset')
+            ->rootElement('resultset')
+            ->recordElement('row')
             ->fieldElement('field', 'name');
 
         $dom = $converter->convert($this->validData);
