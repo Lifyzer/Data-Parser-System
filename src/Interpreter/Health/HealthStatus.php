@@ -26,6 +26,8 @@ class HealthStatus
         'aspartame' => 5,
         'dextrose' => 2,
         'palm oil' => 2.5, // palm oil is carcinogenic (EFSA source)
+        'firming agent' => 0.7,
+        'calcium chloride' => 0.7,
     ];
 
     private const GOOD_INGREDIENTS = [
