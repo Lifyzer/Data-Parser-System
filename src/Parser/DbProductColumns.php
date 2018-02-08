@@ -27,4 +27,19 @@ class DbProductColumns
     public const DIETARY_FIBER = 'dietaryFiber';
     public const SODIUM = 'sodium';
     public const ALCOHOL = 'alcohol';
+
+    public const COLUMNS = [
+        self::PRODUCT_NAME,
+        self::INGREDIENTS,
+        self::IMAGE_URL,
+        self::SATURATED_FATS,
+        self::CARBOHYDRATE,
+        self::SUGAR,
+        self::DIETARY_FIBER,
+        self::PROTEIN,
+        self::SALT,
+        self::SODIUM,
+        self::ALCOHOL,
+        self::IS_HEALTHY
+    ];
 }

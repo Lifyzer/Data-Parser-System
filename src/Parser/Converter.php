@@ -14,6 +14,7 @@ use League\Csv\Writer;
 use League\Csv\XMLConverter;
 use Lifyzer\Interpreter\Health\HealthStatus;
 use Lifyzer\Parser\DbProductColumns as DbColumn;
+use Lifyzer\Parser\DbProductTable as DbTable;
 
 class Converter
 {
@@ -109,26 +110,30 @@ class Converter
      */
     public function asCsv(): string
     {
-        $aCsvHeader = [
-            DbColumn::PRODUCT_NAME,
-            DbColumn::INGREDIENTS,
-            DbColumn::IMAGE_URL,
-            DbColumn::SATURATED_FATS,
-            DbColumn::CARBOHYDRATE,
-            DbColumn::SUGAR,
-            DbColumn::DIETARY_FIBER,
-            DbColumn::PROTEIN,
-            DbColumn::SALT,
-            DbColumn::SODIUM,
-            DbColumn::ALCOHOL,
-            DbColumn::IS_HEALTHY
-        ];
-
         $oCsv = Writer::createFromString('');
-        $oCsv->insertOne($aCsvHeader);
+        $oCsv->insertOne(DbColumn::COLUMNS);
         $oCsv->insertAll($this->validData);
 
         return $oCsv->getContent();
+    }
+
+    public function asSql(): string
+    {
+        $sqlQuery = DbTable::STRUCTURE;
+        $sqlQuery .= "\r\n\r\n";
+
+        foreach ($this->validData as $row) {
+            $sqlQuery .= 'INSERT INTO ' . DbTable::NAME . ' (';
+            $sqlQuery .= implode(', ', DbColumn::COLUMNS);
+            $sqlQuery .= ')';
+            $sqlQuery .= "\r\n";
+            $sqlQuery .= 'VALUES (\'';
+            $sqlQuery .= implode('\', \'', array_map( 'addslashes', $row));
+            $sqlQuery .= '\');';
+            $sqlQuery .= "\r\n";
+        }
+
+        return $sqlQuery;
     }
 
     private function addHealthyField(int $offset): void
