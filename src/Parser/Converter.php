@@ -99,6 +99,9 @@ class Converter
     }
 
     /**
+     * Later one, the output can be converted as SQL file
+     * with tools such as http://convertcsv.com/csv-to-sql.htm
+     *
      * @return string
      *
      * @throws \League\Csv\CannotInsertRecord
