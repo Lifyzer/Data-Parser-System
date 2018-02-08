@@ -13,18 +13,20 @@ class DbProductTable
 
     public const STRUCTURE = <<<'TABLE'
         CREATE TABLE products (
+            id int(10) unsigned NOT NULL AUTO_INCREMENT,
             name varchar(255) NOT NULL,
             ingredients text NOT NULL,
             image varchar(255) NOT NULL,
-            saturatedFats float NOT NULL,
-            carbohydrate float NOT NULL,
-            sugar float NOT NULL,
-            dietaryFiber float NOT NULL,
-            protein float NOT NULL,
-            salt float NOT NULL,
-            sodium float NOT NULL,
-            alcohol float NOT NULL,
-            isHealthy enum('1','0') NOT NULL
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            saturatedFats varchar(20) NOT NULL,
+            carbohydrate varchar(20) NOT NULL,
+            sugar varchar(20) NOT NULL,
+            dietaryFiber varchar(20) NOT NULL,
+            protein varchar(20) NOT NULL,
+            salt varchar(20) NOT NULL,
+            sodium varchar(20) NOT NULL,
+            alcohol varchar(20) NOT NULL,
+            isHealthy enum('1','0') NOT NULL,
+            PRIMARY KEY (id),
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 TABLE;
 }
