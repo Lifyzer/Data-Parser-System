@@ -110,11 +110,11 @@ class Converter
      */
     public function asCsv(): string
     {
-        $oCsv = Writer::createFromString('');
-        $oCsv->insertOne(DbColumn::COLUMNS);
-        $oCsv->insertAll($this->validData);
+        $csv = Writer::createFromString('');
+        $csv->insertOne(DbColumn::COLUMNS);
+        $csv->insertAll($this->validData);
 
-        return $oCsv->getContent();
+        return $csv->getContent();
     }
 
     public function asSql(): string
