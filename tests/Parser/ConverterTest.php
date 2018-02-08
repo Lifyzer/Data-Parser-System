@@ -96,6 +96,18 @@ XML;
         $this->assertSame($expected, $converter->asXml());
     }
 
+    public function testCsvConverted(): void
+    {
+        $converter = $this->initializeConversion();
+
+        $expected = <<<'CSV'
+name,ingredients,image,saturatedFats,carbohydrate,sugar,dietaryFiber,protein,salt,sodium,alcohol,isHealthy
+"Marmite yeast extract","Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.",https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg,0,24,1,3.5,39,9.906,3.9,,1
+"Yeast Extract","Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).",,,0,,,50,12.7,5,,1
+
+CSV;
+        $this->assertSame($expected, $converter->asCsv());
+    }
 
     public function testProductDataWithoutName(): void
     {

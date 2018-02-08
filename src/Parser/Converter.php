@@ -10,13 +10,14 @@ declare(strict_types=1);
 namespace Lifyzer\Parser;
 
 use League\Csv\Reader;
+use League\Csv\Writer;
 use League\Csv\XMLConverter;
 use Lifyzer\Interpreter\Health\HealthStatus;
 use Lifyzer\Parser\DbProductColumns as DbColumn;
 
 class Converter
 {
-    public const FILENAME_EXPORT = 'food-database.xml';
+    public const FILENAME_EXPORT = 'food-database.csv';
 
     private const CSV_DELIMITER = '	';
 
@@ -95,6 +96,36 @@ class Converter
         $dom->formatOutput = true;
 
         return $dom->saveXML();
+    }
+
+    /**
+     * @return string
+     *
+     * @throws \League\Csv\CannotInsertRecord
+     * @throws \TypeError
+     */
+    public function asCsv(): string
+    {
+        $aCsvHeader = [
+            DbColumn::PRODUCT_NAME,
+            DbColumn::INGREDIENTS,
+            DbColumn::IMAGE_URL,
+            DbColumn::SATURATED_FATS,
+            DbColumn::CARBOHYDRATE,
+            DbColumn::SUGAR,
+            DbColumn::DIETARY_FIBER,
+            DbColumn::PROTEIN,
+            DbColumn::SALT,
+            DbColumn::SODIUM,
+            DbColumn::ALCOHOL,
+            DbColumn::IS_HEALTHY
+        ];
+
+        $oCsv = Writer::createFromString('');
+        $oCsv->insertOne($aCsvHeader);
+        $oCsv->insertAll($this->validData);
+
+        return $oCsv->getContent();
     }
 
     private function addHealthyField(int $offset): void
