@@ -18,7 +18,7 @@ use Lifyzer\Parser\DbProductTable as DbTable;
 
 class Converter
 {
-    public const FILENAME_EXPORT = 'food-database.csv';
+    public const FILENAME_EXPORT = 'food-database.sql';
 
     private const CSV_DELIMITER = '	';
 

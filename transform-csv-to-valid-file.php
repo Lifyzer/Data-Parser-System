@@ -28,6 +28,6 @@ $fullPathOutputDb = __DIR__ . '/data/output/' . Converter::FILENAME_EXPORT;
 $file = (new CsvFile($fullPathProviderDb))->getValue();
 $csvReader = Reader::createFromPath($file, 'r+');
 $converter = new Converter($csvReader);
-file_put_contents($fullPathOutputDb, $converter->asCsv());
+file_put_contents($fullPathOutputDb, $converter->asSql());
 
 echo '<p>The DB has been generated in: <a href="file://' . $fullPathOutputDb . '">' . $fullPathOutputDb . '</a> (very big file! Your computer might freeze)</p>';
