@@ -97,7 +97,7 @@ class HealthStatus
     private function areIngredientsInvalid(): bool
     {
         return empty($this->data[$this->offset][DbColumn::INGREDIENTS]) ||
-            strlen($this->data[$this->offset][DbColumn::INGREDIENTS]) <= self::MINIMUM_INGREDIENT_LENGTH;
+            strlen($this->data[$this->offset][DbColumn::INGREDIENTS]) < self::MINIMUM_INGREDIENT_LENGTH;
     }
 
     private function isTooMuchSugar(): bool
