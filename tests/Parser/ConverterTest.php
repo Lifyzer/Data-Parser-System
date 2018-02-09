@@ -128,7 +128,7 @@ CSV;
             sodium varchar(20) NOT NULL,
             alcohol varchar(20) NOT NULL,
             isHealthy enum('1','0') NOT NULL,
-            PRIMARY KEY (id),
+            PRIMARY KEY (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 INSERT INTO products (name, ingredients, image, saturatedFats, carbohydrate, sugar, dietaryFiber, protein, salt, sodium, alcohol, isHealthy)

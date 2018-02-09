@@ -26,7 +26,7 @@ class DbProductTable
             sodium varchar(20) NOT NULL,
             alcohol varchar(20) NOT NULL,
             isHealthy enum('1','0') NOT NULL,
-            PRIMARY KEY (id),
+            PRIMARY KEY (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 TABLE;
 }
