@@ -128,7 +128,7 @@ class Converter
             $sqlQuery .= ')';
             $sqlQuery .= "\n";
             $sqlQuery .= 'VALUES (\'';
-            $sqlQuery .= implode('\', \'', array_map( 'addslashes', $row));
+            $sqlQuery .= implode('\', \'', array_map('addslashes', $row));
             $sqlQuery .= '\');';
             $sqlQuery .= "\n";
         }
