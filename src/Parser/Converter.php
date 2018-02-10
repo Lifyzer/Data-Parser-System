@@ -20,7 +20,11 @@ class Converter
 {
     public const FILENAME_PROVIDER = 'en.openfoodfacts.org.products.csv';
     public const FILENAME_EXPORT = 'food-database.sql';
+    public const SPLIT_SQL_FILENAME_EXPORT = 'food-database-%d-%d';
+    public const FILENAME_EXPORT_EXT = '.sql';
 
+    private const NUM_QUERY_SPLIT = 50;
+    private const OFFSET_START = 1;
     private const CSV_DELIMITER = '	';
 
     private const WANTED_DATA = [
@@ -137,6 +141,31 @@ class Converter
         return $sqlQuery;
     }
 
+    public function asSplitSql(): array
+    {
+        $filename = sprintf(self::SPLIT_SQL_FILENAME_EXPORT, 0, self::NUM_QUERY_SPLIT);
+
+        $sqlQueries[$filename] = DbTable::getStructure();
+        $sqlQueries[$filename] .= "\n\n";
+
+        for ($i = self::OFFSET_START, $size = count($this->validData); $i <= $size; ++$i) {
+            if ($this->isNextSqlSplit($i)) {
+                $filename = sprintf(self::SPLIT_SQL_FILENAME_EXPORT, $i, $i + self::NUM_QUERY_SPLIT);
+            }
+
+            $sqlQueries[$filename] .= 'INSERT INTO ' . DbTable::TABLE_NAME . ' (';
+            $sqlQueries[$filename] .= implode(', ', DbColumn::COLUMNS);
+            $sqlQueries[$filename] .= ')';
+            $sqlQueries[$filename] .= "\n";
+            $sqlQueries[$filename] .= 'VALUES (\'';
+            $sqlQueries[$filename] .= implode('\', \'', array_map('addslashes', $this->validData[$i]));
+            $sqlQueries[$filename] .= '\');';
+            $sqlQueries[$filename] .= "\n";
+        }
+
+        return $sqlQueries;
+    }
+
     private function addHealthyField(int $offset): void
     {
         $healthStatus = new HealthStatus($this->validData, $offset);
@@ -184,5 +213,16 @@ class Converter
     private function isProductNameValid(array $data): bool
     {
         return !empty($data['product_name']);
+    }
+
+    /**
+     * @param int $i
+     *
+     * @return bool
+     */
+    private function isNextSqlSplit(int $i): bool
+    {
+        // Is it a multiple of self::NUM_QUERY_SPLIT?
+        return $i % self::NUM_QUERY_SPLIT === 0;
     }
 }

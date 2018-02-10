@@ -22,12 +22,20 @@ if (!ini_get('auto_detect_line_endings')) {
 
 require 'vendor/autoload.php';
 
-$fullPathProviderDb = __DIR__ . '/data/providers/' . Converter::FILENAME_PROVIDER;
-$fullPathOutputDb = __DIR__ . '/data/output/' . Converter::FILENAME_EXPORT;
+$fullProviderDbPath = __DIR__ . '/data/providers/' . Converter::FILENAME_PROVIDER;
+$outputDbPath = __DIR__ . '/data/output/';
 
-$file = (new CsvFile($fullPathProviderDb))->getValue();
+$file = (new CsvFile($fullProviderDbPath))->getValue();
 $csvReader = Reader::createFromPath($file, 'r+');
 $converter = new Converter($csvReader);
-file_put_contents($fullPathOutputDb, $converter->asSql());
+$sqlSlices = $converter->asSplitSql();
+foreach ($sqlSlices as $filename => $sqlInsert) {
+    $fullPath = $outputDbPath . $filename . Converter::FILENAME_EXPORT_EXT;
 
-echo '<p>The DB has been generated in: <a href="file://' . $fullPathOutputDb . '">' . $fullPathOutputDb . '</a> (very big file! Your computer might freeze)</p>';
+    if (is_file($fullPath)) { // Don't re-update existing files
+        continue;
+    }
+    file_put_contents($fullPath, $sqlInsert);
+}
+
+echo '<p>The output DB file has been generated in: ' . $outputDbPath . ' path.</p>';
