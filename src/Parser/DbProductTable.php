@@ -35,7 +35,7 @@ TABLE;
     /**
      * @return string
      */
-    public static function getStructure()
+    public static function getStructure(): string
     {
         $search = [
             '%tableName%',
