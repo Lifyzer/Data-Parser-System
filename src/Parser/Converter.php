@@ -120,11 +120,11 @@ class Converter
 
     public function asSql(): string
     {
-        $sqlQuery = DbTable::STRUCTURE;
+        $sqlQuery = DbTable::getStructure();
         $sqlQuery .= "\n\n";
 
         foreach ($this->validData as $row) {
-            $sqlQuery .= 'INSERT INTO ' . DbTable::NAME . ' (';
+            $sqlQuery .= 'INSERT INTO ' . DbTable::TABLE_NAME . ' (';
             $sqlQuery .= implode(', ', DbColumn::COLUMNS);
             $sqlQuery .= ')';
             $sqlQuery .= "\n";
