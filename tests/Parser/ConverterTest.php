@@ -23,7 +23,7 @@ class ConverterTest extends TestCase
         $this->assertSame(
             [
                 1 => [
-                    'name' => 'Marmite yeast extract',
+                    'productName' => 'Marmite yeast extract',
                     'ingredients' => 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.',
                     'image' => 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg',
                     'saturatedFats' => '0',
@@ -37,7 +37,7 @@ class ConverterTest extends TestCase
                     'isHealthy' => '1'
                 ],
                 2 => [
-                    'name' => 'Yeast Extract',
+                    'productName' => 'Yeast Extract',
                     'ingredients' => 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).',
                     'image' => '',
                     'saturatedFats' => '',
@@ -63,7 +63,7 @@ class ConverterTest extends TestCase
 <?xml version="1.0"?>
 <resultset>
   <row>
-    <field name="name">Marmite yeast extract</field>
+    <field name="productName">Marmite yeast extract</field>
     <field name="ingredients">Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.</field>
     <field name="image">https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg</field>
     <field name="saturatedFats">0</field>
@@ -77,7 +77,7 @@ class ConverterTest extends TestCase
     <field name="isHealthy">1</field>
   </row>
   <row>
-    <field name="name">Yeast Extract</field>
+    <field name="productName">Yeast Extract</field>
     <field name="ingredients">Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).</field>
     <field name="image"></field>
     <field name="saturatedFats"></field>
@@ -101,7 +101,7 @@ XML;
         $converter = $this->initializeConversion();
 
         $expected = <<<'CSV'
-name,ingredients,image,saturatedFats,carbohydrate,sugar,dietaryFiber,protein,salt,sodium,alcohol,isHealthy
+productName,ingredients,image,saturatedFats,carbohydrate,sugar,dietaryFiber,protein,salt,sodium,alcohol,isHealthy
 "Marmite yeast extract","Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.",https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg,0,24,1,3.5,39,9.906,3.9,,1
 "Yeast Extract","Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).",,,0,,,50,12.7,5,,1
 
@@ -115,8 +115,8 @@ CSV;
 
         $expected = <<<'SQL'
         CREATE TABLE products (
-            id int(10) unsigned NOT NULL AUTO_INCREMENT,
-            name varchar(255) NOT NULL,
+            productId int(10) unsigned NOT NULL AUTO_INCREMENT,
+            productName varchar(255) NOT NULL,
             ingredients text NOT NULL,
             image varchar(255) NOT NULL,
             saturatedFats varchar(20) NOT NULL,
@@ -131,9 +131,9 @@ CSV;
             PRIMARY KEY (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-INSERT INTO products (name, ingredients, image, saturatedFats, carbohydrate, sugar, dietaryFiber, protein, salt, sodium, alcohol, isHealthy)
+INSERT INTO products (productName, ingredients, image, saturatedFats, carbohydrate, sugar, dietaryFiber, protein, salt, sodium, alcohol, isHealthy)
 VALUES ('Marmite yeast extract', 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.', 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg', '0', '24', '1', '3.5', '39', '9.906', '3.9', '', '1');
-INSERT INTO products (name, ingredients, image, saturatedFats, carbohydrate, sugar, dietaryFiber, protein, salt, sodium, alcohol, isHealthy)
+INSERT INTO products (productName, ingredients, image, saturatedFats, carbohydrate, sugar, dietaryFiber, protein, salt, sodium, alcohol, isHealthy)
 VALUES ('Yeast Extract', 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).', '', '', '0', '', '', '50', '12.7', '5', '', '1');
 
 SQL;

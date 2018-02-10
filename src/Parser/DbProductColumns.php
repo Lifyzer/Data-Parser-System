@@ -9,7 +9,8 @@ namespace Lifyzer\Parser;
 
 class DbProductColumns
 {
-    public const PRODUCT_NAME = 'name';
+    public const PRODUCT_ID = 'productId';
+    public const PRODUCT_NAME = 'productName';
     public const IMAGE_URL = 'image';
     public const INGREDIENTS = 'ingredients';
     public const CALORIES = 'calories';
