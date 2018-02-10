@@ -32,9 +32,6 @@ class DbProductTable
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 TABLE;
 
-    /**
-     * @return string
-     */
     public static function getStructure(): string
     {
         $search = [
