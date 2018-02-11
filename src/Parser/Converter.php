@@ -215,11 +215,6 @@ class Converter
         return !empty($data['product_name']);
     }
 
-    /**
-     * @param int $i
-     *
-     * @return bool
-     */
     private function isNextSqlSplit(int $i): bool
     {
         // Is it a multiple of self::NUM_QUERY_SPLIT?
