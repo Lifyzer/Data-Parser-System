@@ -168,7 +168,7 @@ INSERT INTO products (productName, ingredients, image, saturatedFats, carbohydra
 VALUES ('Yeast Extract', 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).', '', '', '0', '', '', '50', '12.7', '5', '', '1');
 
 SQL;
-        $split2 = $converter->asSplitSql()['food-database-0-50'];
+        $split2 = $converter->asSplitSql()['food-database-0-100'];
         $this->assertSame($expected, $split2);
     }
 
