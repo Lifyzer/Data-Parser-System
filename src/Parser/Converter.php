@@ -28,6 +28,7 @@ class Converter
     private const CSV_DELIMITER = '	';
 
     private const WANTED_DATA = [
+        'code',
         'product_name',
         'image_front_small_url',
         //'countries_en',
@@ -180,6 +181,7 @@ class Converter
     private function replaceKeys(string $keyName): string
     {
         $search = [
+            'code',
             'product_name',
             'image_front_small_url',
             'ingredients_text',
@@ -194,6 +196,7 @@ class Converter
         ];
 
         $replace = [
+            DbColumn::BARCODE,
             DbColumn::PRODUCT_NAME,
             DbColumn::IMAGE_URL,
             DbColumn::INGREDIENTS,

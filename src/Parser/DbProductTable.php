@@ -16,6 +16,7 @@ class DbProductTable
     private const STRUCTURE = <<<'TABLE'
         CREATE TABLE %tableName% (
             %id% int(10) unsigned NOT NULL AUTO_INCREMENT,
+            %core% varchar(255) DEFAULT NULL,
             %name% varchar(255) NOT NULL,
             %ingredients% text NOT NULL,
             %imageUrl% varchar(255) NOT NULL,
@@ -37,6 +38,7 @@ TABLE;
         $search = [
             '%tableName%',
             '%id%',
+            '%code%',
             '%name%',
             '%ingredients%',
             '%imageUrl%',
@@ -54,6 +56,7 @@ TABLE;
         $replace = [
             self::TABLE_NAME,
             DbColumn::PRODUCT_ID,
+            DbColumn::BARCODE,
             DbColumn::PRODUCT_NAME,
             DbColumn::INGREDIENTS,
             DbColumn::IMAGE_URL,
