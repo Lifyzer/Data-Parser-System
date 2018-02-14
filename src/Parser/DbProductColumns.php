@@ -9,25 +9,28 @@ namespace Lifyzer\Parser;
 
 class DbProductColumns
 {
-    public const PRODUCT_ID = 'productId';
-    public const PRODUCT_NAME = 'productName';
-    public const IMAGE_URL = 'image';
+    public const PRODUCT_ID = 'id';
+    public const BARCODE = 'barcode_id';
+    public const PRODUCT_NAME = 'product_name';
+    public const COMPANY_NAME = 'company_name';
+    public const IMAGE_URL = 'product_image';
     public const INGREDIENTS = 'ingredients';
     public const CALORIES = 'calories';
-    public const IS_ORGANIC = 'isOrganic';
-    public const IS_HEALTHY = 'isHealthy';
+    public const IS_ORGANIC = 'is_organic';
+    public const IS_HEALTHY = 'is_healthy';
     public const VITAMINS = 'vitamin';
-    public const FAT = 'fat';
-    public const SATURATED_FATS = 'saturatedFats';
+    public const FAT = 'fat_amount';
+    public const SATURATED_FATS = 'saturated_fats';
     public const PROTEIN = 'protein';
     public const SUGAR = 'sugar';
     public const SALT = 'salt';
     public const CARBOHYDRATE = 'carbohydrate';
-    public const DIETARY_FIBER = 'dietaryFiber';
+    public const DIETARY_FIBER = 'dietary_fiber';
     public const SODIUM = 'sodium';
     public const ALCOHOL = 'alcohol';
 
     public const COLUMNS = [
+        self::BARCODE,
         self::PRODUCT_NAME,
         self::INGREDIENTS,
         self::IMAGE_URL,
