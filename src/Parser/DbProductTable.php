@@ -16,7 +16,7 @@ class DbProductTable
     private const STRUCTURE = <<<'TABLE'
         CREATE TABLE %tableName% (
             %id% int(10) unsigned NOT NULL AUTO_INCREMENT,
-            %core% varchar(255) DEFAULT NULL,
+            %code% varchar(255) DEFAULT NULL,
             %name% varchar(255) NOT NULL,
             %ingredients% text NOT NULL,
             %imageUrl% varchar(255) NOT NULL,
