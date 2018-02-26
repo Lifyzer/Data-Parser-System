@@ -40,7 +40,8 @@ class HealthStatus
         'avocados' => 1, // should be more than one
         'lemon' => 1,
         'antioxidant' => 2,
-        'sesame' => 1.5
+        'sesame' => 1.5,
+        'curcuma' => 1
     ];
 
     /** @var array */
