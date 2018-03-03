@@ -174,7 +174,7 @@ INSERT INTO products (barcode_id, product_name, ingredients, product_image, satu
 VALUES ('0667803001957', 'Yeast Extract', 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).', '', '', '0', '', '', '50', '12.7', '5', '', '1');
 
 SQL;
-        $split2 = $converter->asSplitSql()['food-database-0-100'];
+        $split2 = $converter->asSplitSql()['food-database-0-150'];
         $this->assertSame($expected, $split2);
     }
 

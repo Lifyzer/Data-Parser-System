@@ -23,7 +23,7 @@ class Converter
     public const SPLIT_SQL_FILENAME_EXPORT = 'food-database-%d-%d';
     public const FILENAME_EXPORT_EXT = '.sql';
 
-    private const NUM_QUERY_SPLIT = 100;
+    private const NUM_QUERY_SPLIT = 150;
     private const OFFSET_START = 1;
     private const CSV_DELIMITER = '	';
 
