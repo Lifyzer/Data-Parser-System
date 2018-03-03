@@ -38,4 +38,4 @@ foreach ($sqlSlices as $filename => $sqlInsert) {
     file_put_contents($fullPath, $sqlInsert);
 }
 
-echo '<p>The output DB file has been generated in: ' . $outputDbPath . ' path.</p>';
+echo '<p>The output DB file has been generated in: ' . $outputDbPath . ' folder.</p>';
