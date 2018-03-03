@@ -14,7 +14,7 @@ class DbProductTable
     public const TABLE_NAME = 'products';
 
     private const STRUCTURE = <<<'TABLE'
-        CREATE TABLE %tableName% (
+        CREATE TABLE IF NOT EXISTS %tableName% (
             %id% int(10) unsigned NOT NULL AUTO_INCREMENT,
             %code% varchar(255) DEFAULT NULL,
             %name% varchar(255) NOT NULL,

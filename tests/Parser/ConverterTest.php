@@ -118,7 +118,7 @@ CSV;
         $converter = $this->initializeConversion();
 
         $expected = <<<'SQL'
-        CREATE TABLE products (
+        CREATE TABLE IF NOT EXISTS products (
             id int(10) unsigned NOT NULL AUTO_INCREMENT,
             barcode_id varchar(255) DEFAULT NULL,
             product_name varchar(255) NOT NULL,
@@ -150,7 +150,7 @@ SQL;
         $converter = $this->initializeConversion();
 
         $expected = <<<'SQL'
-        CREATE TABLE products (
+        CREATE TABLE IF NOT EXISTS products (
             id int(10) unsigned NOT NULL AUTO_INCREMENT,
             barcode_id varchar(255) DEFAULT NULL,
             product_name varchar(255) NOT NULL,
