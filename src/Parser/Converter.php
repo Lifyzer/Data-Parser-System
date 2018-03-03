@@ -149,22 +149,20 @@ class Converter
         $sqlQueries[$filename] = DbTable::getStructure();
         $sqlQueries[$filename] .= "\n\n";
 
-        for ($i = self::OFFSET_START, $size = count($this->validData); $i <= $size; ++$i) {
-            if (!empty($this->validData[$i])) {
-                if ($this->isNextSqlSplit($i)) {
-                    $filename = sprintf(self::SPLIT_SQL_FILENAME_EXPORT, $i, $i + self::NUM_QUERY_SPLIT);
-                    $sqlQueries[$filename] = ''; // Reinitialize the new array
-                }
-
-                $sqlQueries[$filename] .= 'INSERT INTO ' . DbTable::TABLE_NAME . ' (';
-                $sqlQueries[$filename] .= implode(', ', DbColumn::COLUMNS);
-                $sqlQueries[$filename] .= ')';
-                $sqlQueries[$filename] .= "\n";
-                $sqlQueries[$filename] .= 'VALUES (\'';
-                $sqlQueries[$filename] .= implode('\', \'', array_map('addslashes', $this->validData[$i]));
-                $sqlQueries[$filename] .= '\');';
-                $sqlQueries[$filename] .= "\n";
+        foreach ($this->validData as $offset => $row) {
+            if ($this->isNextSqlSplit($offset)) {
+                $filename = sprintf(self::SPLIT_SQL_FILENAME_EXPORT, $offset, $offset + self::NUM_QUERY_SPLIT);
+                $sqlQueries[$filename] = ''; // Reinitialize the new array
             }
+
+            $sqlQueries[$filename] .= 'INSERT INTO ' . DbTable::TABLE_NAME . ' (';
+            $sqlQueries[$filename] .= implode(', ', DbColumn::COLUMNS);
+            $sqlQueries[$filename] .= ')';
+            $sqlQueries[$filename] .= "\n";
+            $sqlQueries[$filename] .= 'VALUES (\'';
+            $sqlQueries[$filename] .= implode('\', \'', array_map('addslashes', $this->validData[$offset]));
+            $sqlQueries[$filename] .= '\');';
+            $sqlQueries[$filename] .= "\n";
         }
 
         return $sqlQueries;
@@ -221,9 +219,9 @@ class Converter
         return !empty($data['product_name']);
     }
 
-    private function isNextSqlSplit(int $i): bool
+    private function isNextSqlSplit(int $offset): bool
     {
         // Is it a multiple of self::NUM_QUERY_SPLIT?
-        return $i % self::NUM_QUERY_SPLIT === 0;
+        return $offset % self::NUM_QUERY_SPLIT === 0;
     }
 }
