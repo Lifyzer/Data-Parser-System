@@ -150,18 +150,21 @@ class Converter
         $sqlQueries[$filename] .= "\n\n";
 
         for ($i = self::OFFSET_START, $size = count($this->validData); $i <= $size; ++$i) {
-            if ($this->isNextSqlSplit($i)) {
-                $filename = sprintf(self::SPLIT_SQL_FILENAME_EXPORT, $i, $i + self::NUM_QUERY_SPLIT);
-            }
+            if (!empty($this->validData[$i])) {
+                if ($this->isNextSqlSplit($i)) {
+                    $filename = sprintf(self::SPLIT_SQL_FILENAME_EXPORT, $i, $i + self::NUM_QUERY_SPLIT);
+                    $sqlQueries[$filename] = ''; // Reinitialize the new array
+                }
 
-            $sqlQueries[$filename] .= 'INSERT INTO ' . DbTable::TABLE_NAME . ' (';
-            $sqlQueries[$filename] .= implode(', ', DbColumn::COLUMNS);
-            $sqlQueries[$filename] .= ')';
-            $sqlQueries[$filename] .= "\n";
-            $sqlQueries[$filename] .= 'VALUES (\'';
-            $sqlQueries[$filename] .= implode('\', \'', array_map('addslashes', $this->validData[$i]));
-            $sqlQueries[$filename] .= '\');';
-            $sqlQueries[$filename] .= "\n";
+                $sqlQueries[$filename] .= 'INSERT INTO ' . DbTable::TABLE_NAME . ' (';
+                $sqlQueries[$filename] .= implode(', ', DbColumn::COLUMNS);
+                $sqlQueries[$filename] .= ')';
+                $sqlQueries[$filename] .= "\n";
+                $sqlQueries[$filename] .= 'VALUES (\'';
+                $sqlQueries[$filename] .= implode('\', \'', array_map('addslashes', $this->validData[$i]));
+                $sqlQueries[$filename] .= '\');';
+                $sqlQueries[$filename] .= "\n";
+            }
         }
 
         return $sqlQueries;
