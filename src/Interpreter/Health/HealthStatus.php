@@ -28,6 +28,8 @@ class HealthStatus
         'palm oil' => 2.5, // palm oil is carcinogenic (EFSA source)
         'firming agent' => 0.7,
         'calcium chloride' => 0.7, // https://www.livestrong.com/article/457871-how-does-calcium-chloride-work/
+        'aspartame' => 0.4,
+        'acesulfame' => 0.4
     ];
 
     private const GOOD_INGREDIENTS = [
