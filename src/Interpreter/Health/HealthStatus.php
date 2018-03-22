@@ -14,13 +14,14 @@ use Lifyzer\Parser\DbProductColumns as DbColumn;
 class HealthStatus
 {
     private const MINIMUM_INGREDIENT_LENGTH = 5;
-    private const MAXIMUM_HEALTHY_SUGAR = 30;
-    private const MAXIMUM_HEALTHY_SALT = 12;
-    private const MAXIMUM_HEALTHY_FAT = 20;
+    private const MAXIMUM_HEALTHY_SUGAR = 25; // gram
+    private const MAXIMUM_HEALTHY_SALT = 1; // gram
+    private const MAXIMUM_HEALTHY_FAT = 35; // gram
     private const DANGER_LEVEL = 5;
 
     private const BAD_INGREDIENTS = [
         'emulsifier' => 3,
+        'émulsifiant' => 3,
         'additive' => 3,
         'stabiliser' => 2,
         'aspartame' => 5,
