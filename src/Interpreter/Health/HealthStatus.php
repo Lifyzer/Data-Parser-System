@@ -134,6 +134,6 @@ class HealthStatus
 
     private function isAlcohol(): bool
     {
-        return (int)$this->data[$this->offset][DbColumn::ALCOHOL] !== 0;
+        return !empty($this->data[$this->offset][DbColumn::ALCOHOL]);
     }
 }
