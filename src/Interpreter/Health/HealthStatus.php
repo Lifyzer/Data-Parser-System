@@ -119,17 +119,17 @@ class HealthStatus
 
     private function isTooMuchSugar(): bool
     {
-        return (int)$this->data[$this->offset][DbColumn::SUGAR] > self::MAXIMUM_HEALTHY_SUGAR;
+        return (float)$this->data[$this->offset][DbColumn::SUGAR] > self::MAXIMUM_HEALTHY_SUGAR;
     }
 
     private function isTooFat(): bool
     {
-        return (int)$this->data[$this->offset][DbColumn::SATURATED_FATS] > self::MAXIMUM_HEALTHY_FAT;
+        return (float)$this->data[$this->offset][DbColumn::SATURATED_FATS] > self::MAXIMUM_HEALTHY_FAT;
     }
 
     private function isTooMuchSalt(): bool
     {
-        return (int)$this->data[$this->offset][DbColumn::SALT] > self::MAXIMUM_HEALTHY_SALT;
+        return (float)$this->data[$this->offset][DbColumn::SALT] > self::MAXIMUM_HEALTHY_SALT;
     }
 
     private function isAlcohol(): bool
