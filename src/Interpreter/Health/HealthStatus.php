@@ -18,6 +18,7 @@ class HealthStatus
     private const MAXIMUM_HEALTHY_SALT = 1; // gram
     private const MAXIMUM_HEALTHY_FAT = 35; // gram
     private const DANGER_LEVEL = 5;
+    private const NEUTRAL_LEVEL = 0;
 
     private const BAD_INGREDIENTS = [
         'emulsifier' => 3,
@@ -53,10 +54,14 @@ class HealthStatus
     /** @var int */
     private $offset;
 
+    /** @var int */
+    private $dangerLevel;
+
     public function __construct(array $data, int $offset)
     {
         $this->data = $data;
         $this->offset = $offset;
+        $this->dangerLevel = self::NEUTRAL_LEVEL;
     }
 
     public function isHealthy(): bool
@@ -75,27 +80,35 @@ class HealthStatus
             return false;
         }
 
-        $dangerLevel = 0; // neutral level
+        // Increase self::$dangerLevel if "dangerous" ingredients are found
+        $this->calculateBadIngredients();
 
-        // Increase the danger lever if "dangerous" ingredients are found
+        // Decrease self::$dangerLevel if "healthy" ingredients are found
+        $this->calculateGoodIngredients();
+
+        return $this->dangerLevel >= self::DANGER_LEVEL;
+    }
+
+    private function calculateBadIngredients(): void
+    {
         foreach (self::BAD_INGREDIENTS as $name => $level) {
             if (stripos($this->data[$this->offset][DbColumn::INGREDIENTS], $name) !== false) {
-                $dangerLevel += $level;
+                $this->dangerLevel += $level;
             }
         }
+    }
 
-        // Decrease the danger lever if "healthy" ingredients are found
+    private function calculateGoodIngredients(): void
+    {
         foreach (self::GOOD_INGREDIENTS as $name => $level) {
             if (stripos($this->data[$this->offset][DbColumn::INGREDIENTS], $name) !== false) {
-                if ($dangerLevel === 0) {
+                if ($this->dangerLevel === 0) {
                     break; // Cannot go under zero
                 }
 
-                $dangerLevel -= $level;
+                $this->dangerLevel -= $level;
             }
         }
-
-        return $dangerLevel >= self::DANGER_LEVEL;
     }
 
     private function areIngredientsInvalid(): bool
