@@ -118,7 +118,7 @@ CSV;
         $converter = $this->initializeConversion();
 
         $expected = <<<'SQL'
-        CREATE TABLE IF NOT EXISTS products (
+        CREATE TABLE IF NOT EXISTS product (
             id int(10) unsigned NOT NULL AUTO_INCREMENT,
             barcode_id varchar(150) DEFAULT NULL,
             product_name varchar(255) NOT NULL,
@@ -136,9 +136,9 @@ CSV;
             PRIMARY KEY (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-INSERT INTO products (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
+INSERT INTO product (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
 VALUES ('50184385', 'Marmite yeast extract', 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.', 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg', '0', '24', '1', '3.5', '39', '9.906', '3.9', '', '0');
-INSERT INTO products (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
+INSERT INTO product (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
 VALUES ('0667803001957', 'Yeast Extract', 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).', '', '', '0', '', '', '50', '0.97', '5', '', '1');
 
 SQL;
@@ -150,7 +150,7 @@ SQL;
         $converter = $this->initializeConversion();
 
         $expected = <<<'SQL'
-        CREATE TABLE IF NOT EXISTS products (
+        CREATE TABLE IF NOT EXISTS product (
             id int(10) unsigned NOT NULL AUTO_INCREMENT,
             barcode_id varchar(150) DEFAULT NULL,
             product_name varchar(255) NOT NULL,
@@ -168,9 +168,9 @@ SQL;
             PRIMARY KEY (id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-INSERT INTO products (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
+INSERT INTO product (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
 VALUES ('50184385', 'Marmite yeast extract', 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.', 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg', '0', '24', '1', '3.5', '39', '9.906', '3.9', '', '0');
-INSERT INTO products (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
+INSERT INTO product (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
 VALUES ('0667803001957', 'Yeast Extract', 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).', '', '', '0', '', '', '50', '0.97', '5', '', '1');
 
 SQL;

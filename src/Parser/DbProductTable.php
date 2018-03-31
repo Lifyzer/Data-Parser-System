@@ -11,7 +11,7 @@ use Lifyzer\Parser\DbProductColumns as DbColumn;
 
 class DbProductTable
 {
-    public const TABLE_NAME = 'products';
+    public const TABLE_NAME = 'product';
 
     private const STRUCTURE = <<<'TABLE'
         CREATE TABLE IF NOT EXISTS %tableName% (
