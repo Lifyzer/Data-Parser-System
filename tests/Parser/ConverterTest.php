@@ -132,8 +132,10 @@ CSV;
             salt float NOT NULL,
             sodium float NOT NULL,
             alcohol float NOT NULL,
+            is_organic enum('1','0') NOT NULL,
             is_healthy enum('1','0') NOT NULL,
-            PRIMARY KEY (id)
+            PRIMARY KEY (id),
+            UNIQUE KEY (barcode_id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 INSERT INTO product (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
@@ -164,8 +166,10 @@ SQL;
             salt float NOT NULL,
             sodium float NOT NULL,
             alcohol float NOT NULL,
+            is_organic enum('1','0') NOT NULL,
             is_healthy enum('1','0') NOT NULL,
-            PRIMARY KEY (id)
+            PRIMARY KEY (id),
+            UNIQUE KEY (barcode_id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 INSERT INTO product (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)

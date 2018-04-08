@@ -28,8 +28,10 @@ class DbProductTable
             %salt% float NOT NULL,
             %sodium% float NOT NULL,
             %alcohol% float NOT NULL,
+            %isOrganic% enum('1','0') NOT NULL,
             %isHealthy% enum('1','0') NOT NULL,
-            PRIMARY KEY (id)
+            PRIMARY KEY (id),
+            UNIQUE KEY (barcode_id)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 TABLE;
 
@@ -50,6 +52,7 @@ TABLE;
             '%salt%',
             '%sodium%',
             '%alcohol%',
+            '%isOrganic%',
             '%isHealthy%'
         ];
 
@@ -68,6 +71,7 @@ TABLE;
             DbColumn::SALT,
             DbColumn::SODIUM,
             DbColumn::ALCOHOL,
+            DbColumn::IS_ORGANIC,
             DbColumn::IS_HEALTHY
         ];
 
