@@ -95,7 +95,7 @@ class HealthStatus
     private function calculateBadIngredients(): void
     {
         foreach (self::BAD_INGREDIENTS as $name => $level) {
-            if (stripos($this->data[$this->offset][DbColumn::INGREDIENTS], $name) !== false) {
+            if ($this->findInIngredients($name)) {
                 $this->dangerLevel += $level;
             }
         }
@@ -104,7 +104,7 @@ class HealthStatus
     private function calculateGoodIngredients(): void
     {
         foreach (self::GOOD_INGREDIENTS as $name => $level) {
-            if (stripos($this->data[$this->offset][DbColumn::INGREDIENTS], $name) !== false) {
+            if ($this->findInIngredients($name)) {
                 if ($this->dangerLevel === 0) {
                     break; // Cannot go under zero
                 }
@@ -138,5 +138,17 @@ class HealthStatus
     private function isAlcohol(): bool
     {
         return !empty($this->data[$this->offset][DbColumn::ALCOHOL]);
+    }
+
+    /**
+     * Find words (components) in ingredients using RegEx pattern.
+     *
+     * @param string $component
+     *
+     * @return bool
+     */
+    private function findInIngredients(string $component): bool
+    {
+        return preg_match('/' . $component . '/i', $this->data[$this->offset][DbColumn::INGREDIENTS]) === 1;
     }
 }
