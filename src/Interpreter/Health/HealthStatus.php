@@ -21,8 +21,7 @@ class HealthStatus
     private const NEUTRAL_LEVEL = 0;
 
     private const BAD_INGREDIENTS = [
-        'emulsifier' => 3,
-        'émulsifiant' => 3,
+        'emulsifier|émulsifiant' => 3,
         'additive' => 3,
         'stabiliser' => 2,
         'aspartame' => 5,
@@ -31,7 +30,7 @@ class HealthStatus
         'firming agent' => 0.7,
         'calcium chloride' => 0.7, // https://www.livestrong.com/article/457871-how-does-calcium-chloride-work/
         'aspartame' => 0.4,
-        'acesulfame' => 0.4
+        'acesulfame' => 0.4,
     ];
 
     private const GOOD_INGREDIENTS = [
@@ -46,7 +45,10 @@ class HealthStatus
         'antioxidant' => 2,
         'sesame' => 1.5,
         'curcuma' => 1,
-        'chia' => 1 // https://draxe.com/chia-seeds-benefits-side-effects/
+        'spirulina|spiruline' => 1,
+        'chia' => 1, // https://draxe.com/chia-seeds-benefits-side-effects/
+        'kale' => 0.3,
+        'goji' => 0.4, // https://www.nhs.uk/Livewell/superfoods/Pages/are-goji-berries-a-superfood.aspx
     ];
 
     /** @var array */
