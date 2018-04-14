@@ -45,7 +45,8 @@ class HealthStatus
         'lemon' => 1,
         'antioxidant' => 2,
         'sesame' => 1.5,
-        'curcuma' => 1
+        'curcuma' => 1,
+        'chia' => 1 // https://draxe.com/chia-seeds-benefits-side-effects/
     ];
 
     /** @var array */
