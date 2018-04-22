@@ -18,8 +18,8 @@ use Lifyzer\Parser\DbProductTable as DbTable;
 
 class Converter
 {
-    public const FILENAME_PROVIDER = 'openfoodfacts_search.csv';
-    public const FILENAME_EXPORT = 'food-database.sql';
+    public const FILENAME_PROVIDER = 'en.openfoodfacts.org.products.csv';
+    public const SQL_FILENAME_EXPORT = 'food-database.sql';
     public const SPLIT_SQL_FILENAME_EXPORT = 'food-database-%d-%d';
     public const FILENAME_EXPORT_EXT = '.sql';
 
