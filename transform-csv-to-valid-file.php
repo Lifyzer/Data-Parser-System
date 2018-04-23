@@ -29,6 +29,7 @@ $file = (new CsvFile($fullProviderDbPath))->getValue();
 $csvReader = Reader::createFromPath($file, 'r+');
 $converter = new Converter($csvReader);
 $sqlSlices = $converter->asSplitSql();
+
 foreach ($sqlSlices as $filename => $sqlInsert) {
     $fullPath = $outputDbPath . $filename . Converter::FILENAME_EXPORT_EXT;
 
