@@ -24,13 +24,12 @@ class HealthStatus
         'emulsifier|émulsifiant' => 3,
         'additive' => 3,
         'stabiliser' => 2,
-        'aspartame' => 5,
+        'flavor enhancer|flavour enhancer' => 1,
         'dextrose' => 2,
         'palm oil' => 2.5, // palm oil is carcinogenic (EFSA source)
         'firming agent' => 0.7,
         'calcium chloride' => 0.7, // https://www.livestrong.com/article/457871-how-does-calcium-chloride-work/
-        'aspartame' => 0.4,
-        'acesulfame' => 0.4,
+        'aspartame|acesulfame' => 0.4,
     ];
 
     private const GOOD_INGREDIENTS = [
@@ -46,7 +45,7 @@ class HealthStatus
         'sesame' => 1.5,
         'curcuma' => 1,
         'spirulina|spiruline' => 1,
-        'chia' => 1, // https://draxe.com/chia-seeds-benefits-side-effects/
+        'chia' => 1.2, // https://draxe.com/chia-seeds-benefits-side-effects/
         'kale' => 0.3,
         'goji' => 0.4, // https://www.nhs.uk/Livewell/superfoods/Pages/are-goji-berries-a-superfood.aspx
     ];
