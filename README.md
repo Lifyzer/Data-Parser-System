@@ -9,6 +9,11 @@ _Simple script that parses data from open source food databases to the standard 
 * [Composer](https://getcomposer.org)
 
 
+## This can be slow... With big databases
+
+When running `transform-csv-to-valid-file.php` with >= 1.5 GB CSV file for the food database provider, it can take nearly 3 days. Just keep your Web browser running and wait :) 
+
+
 ## Who Did This...? 😉
 
-Made with ❤️ by [Pierre-Henry Soria](http://ph7.me)! (and in good health **thanks Lifyzer App**! 😸)
+Made with ❤️ by [Pierre-Henry Soria](http://pierrehenry.be)! (and in good health **thanks Lifyzer App**! 😸)
