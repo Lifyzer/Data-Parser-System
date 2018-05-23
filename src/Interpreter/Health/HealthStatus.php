@@ -126,7 +126,8 @@ class HealthStatus
 
     private function isTooFat(): bool
     {
-        return (float)$this->data[$this->offset][DbColumn::SATURATED_FATS] > self::MAXIMUM_HEALTHY_FAT;
+        return (float)$this->data[$this->offset][DbColumn::SATURATED_FATS] > self::MAXIMUM_HEALTHY_FAT ||
+            (float)$this->data[$this->offset][DbColumn::FAT] >= self::MAXIMUM_HEALTHY_FAT;
     }
 
     private function isTooMuchSalt(): bool

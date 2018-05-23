@@ -34,6 +34,7 @@ class DbProductColumns
         self::PRODUCT_NAME,
         self::INGREDIENTS,
         self::IMAGE_URL,
+        self::FAT,
         self::SATURATED_FATS,
         self::CARBOHYDRATE,
         self::SUGAR,
