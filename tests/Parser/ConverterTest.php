@@ -174,12 +174,14 @@ SQL;
 
 INSERT INTO product (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
 VALUES ('50184385', 'Marmite yeast extract', 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.', 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg', '0', '24', '1', '3.5', '39', '9.906', '3.9', '', '0');
+
 INSERT INTO product (barcode_id, product_name, ingredients, product_image, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
 VALUES ('0667803001957', 'Yeast Extract', 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).', '', '', '0', '', '', '50', '0.97', '5', '', '1');
 
+
 SQL;
-        $split2 = $converter->asSplitSql()['food-database-0-150'];
-        $this->assertSame($expected, $split2);
+        $splitSql = $converter->asSplitSql()['food-database-0-1000'];
+        $this->assertSame($expected, $splitSql);
     }
 
     public function testProductDataWithoutName(): void
