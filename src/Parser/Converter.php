@@ -37,6 +37,7 @@ class Converter
         'sugars_100g',
         'carbohydrates_100g',
         //'cholesterol_100g',
+        'fat_100g',
         'saturated-fat_100g',
         'fiber_100g',
         'proteins_100g',
@@ -191,6 +192,7 @@ class Converter
             'sodium_100g',
             'proteins_100g',
             'saturated-fat_100g',
+            'fat_100g',
             'fiber_100g',
             'alcohol_100g',
         ];
@@ -206,6 +208,7 @@ class Converter
             DbColumn::SODIUM,
             DbColumn::PROTEIN,
             DbColumn::SATURATED_FATS,
+            DbColumn::FAT,
             DbColumn::DIETARY_FIBER,
             DbColumn::ALCOHOL,
         ];
