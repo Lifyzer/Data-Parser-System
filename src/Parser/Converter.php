@@ -135,7 +135,7 @@ class Converter
             $sqlQuery .= 'VALUES (\'';
             $sqlQuery .= implode('\', \'', array_map('addslashes', $row));
             $sqlQuery .= '\');';
-            $sqlQuery .= "\n";
+            $sqlQuery .= "\n\n";
         }
 
         return $sqlQuery;
@@ -161,7 +161,7 @@ class Converter
             $sqlQueries[$filename] .= 'VALUES (\'';
             $sqlQueries[$filename] .= implode('\', \'', array_map('addslashes', $this->validData[$offset]));
             $sqlQueries[$filename] .= '\');';
-            $sqlQueries[$filename] .= "\n";
+            $sqlQueries[$filename] .= "\n\n";
         }
 
         return $sqlQueries;
