@@ -27,6 +27,7 @@ class HealthStatus
         'flavor enhancer|flavour enhancer' => 1,
         'dextrose' => 2,
         'palm oil' => 2.5, // palm oil is carcinogenic (EFSA source)
+        'oil' => 1,
         'firming agent' => 0.7,
         'calcium chloride' => 0.7, // https://www.livestrong.com/article/457871-how-does-calcium-chloride-work/
         'aspartame|acesulfame' => 0.4,
@@ -41,6 +42,7 @@ class HealthStatus
         'chestnuts' => 1, // should be more than one
         'avocados' => 1, // should be more than one
         'lemon' => 1,
+        'garlic' => 0.5,
         'antioxidant' => 2,
         'sesame' => 1.5,
         'curcuma' => 1,
