@@ -23,7 +23,7 @@ class Converter
     public const SPLIT_SQL_FILENAME_EXPORT = 'food-database-%d-%d';
     public const FILENAME_EXPORT_EXT = '.sql';
 
-    private const NUM_QUERY_SPLIT = 150;
+    private const NUM_QUERY_SPLIT = 1000;
     private const CSV_DELIMITER = '	';
 
     private const WANTED_DATA = [
@@ -136,7 +136,7 @@ class Converter
             $sqlQuery .= 'VALUES (\'';
             $sqlQuery .= implode('\', \'', array_map('addslashes', $row));
             $sqlQuery .= '\');';
-            $sqlQuery .= "\n";
+            $sqlQuery .= "\n\n";
         }
 
         return $sqlQuery;
@@ -162,7 +162,7 @@ class Converter
             $sqlQueries[$filename] .= 'VALUES (\'';
             $sqlQueries[$filename] .= implode('\', \'', array_map('addslashes', $this->validData[$offset]));
             $sqlQueries[$filename] .= '\');';
-            $sqlQueries[$filename] .= "\n";
+            $sqlQueries[$filename] .= "\n\n";
         }
 
         return $sqlQueries;

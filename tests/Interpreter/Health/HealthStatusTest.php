@@ -43,7 +43,8 @@ class HealthStatusTest extends TestCase
             [
                 [
                     self::OFFSET => [
-                        // Data are set in string, so we keep that in our tests
+                        // Data are set in string, so we keep the same in our tests
+                        DbColumn::FAT => '0',
                         DbColumn::SATURATED_FATS => '1',
                         DbColumn::ALCOHOL => '0',
                         DbColumn::SUGAR => '3',
@@ -61,7 +62,8 @@ class HealthStatusTest extends TestCase
             [
                 [
                     self::OFFSET => [
-                        // Data are set in string, so we keep that in our tests
+                        // Data are set in string, so we keep the same in our tests
+                        DbColumn::FAT => '3',
                         DbColumn::SATURATED_FATS => '30',
                         DbColumn::ALCOHOL => '1',
                         DbColumn::SUGAR => '3',
