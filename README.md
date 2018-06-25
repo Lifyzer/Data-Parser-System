@@ -16,4 +16,4 @@ When running `transform-csv-to-valid-file.php` with >= 1.5 GB CSV file for the f
 
 ## Who Did This...? 😉
 
-Made with ❤️ by [Pierre-Henry Soria](http://pierrehenry.be)! (and in good health **thanks Lifyzer App**! 😸)
+Made with ❤️ by [Pierre-Henry Soria](http://pierrehenry.be)! (and in good health **thanks [Lifyzer App](https://lifyzer.com)**! 😸)
