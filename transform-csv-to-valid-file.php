@@ -33,7 +33,8 @@ $sqlSlices = $converter->asSplitSql();
 foreach ($sqlSlices as $filename => $sqlInsert) {
     $fullPath = $outputDbPath . $filename . Converter::FILENAME_EXPORT_EXT;
 
-    if (is_file($fullPath)) { // Don't re-update existing files
+    if (is_file($fullPath)) {
+        // Don't re-update existing files
         continue;
     }
     file_put_contents($fullPath, $sqlInsert);
