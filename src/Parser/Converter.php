@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Lifyzer\Parser;
 
+use Iterator;
 use League\Csv\Reader;
 use League\Csv\Writer;
 use League\Csv\XMLConverter;
@@ -75,16 +76,7 @@ class Converter
         $csvReader->setHeaderOffset(0);
 
         $records = $csvReader->getRecords();
-        foreach ($records as $offset => $data) {
-            if ($this->isProductNameValid($data)) {
-                foreach ($data as $key => $val) {
-                    if ($this->isCsvKeyValid($key)) {
-                        $this->validData[$offset][$this->replaceKeys($key)] = $val ?? '';
-                    }
-                }
-                $this->addHealthyField($offset);
-            }
-        }
+        $this->populateData($records);
     }
 
     public function asArray(): array
@@ -166,6 +158,20 @@ class Converter
         }
 
         return $sqlQueries;
+    }
+
+    private function populateData(Iterator $records): void
+    {
+        foreach ($records as $offset => $data) {
+            if ($this->isProductNameValid($data)) {
+                foreach ($data as $key => $val) {
+                    if ($this->isCsvKeyValid($key)) {
+                        $this->validData[$offset][$this->replaceKeys($key)] = $val ?? '';
+                    }
+                }
+                $this->addHealthyField($offset);
+            }
+        }
     }
 
     private function addHealthyField(int $offset): void
