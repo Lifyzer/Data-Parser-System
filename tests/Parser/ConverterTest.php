@@ -26,7 +26,7 @@ class ConverterTest extends TestCase
                     'barcode_id' => '50184385',
                     'product_name' => 'Marmite yeast extract',
                     'ingredients' => 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.',
-                    'product_image' => 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg',
+                    'product_image' => 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.400.jpg',
                     'fat_amount' => '0.1',
                     'saturated_fats' => '0',
                     'carbohydrate' => '24',
@@ -70,7 +70,7 @@ class ConverterTest extends TestCase
     <field name="barcode_id">50184385</field>
     <field name="product_name">Marmite yeast extract</field>
     <field name="ingredients">Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.</field>
-    <field name="product_image">https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg</field>
+    <field name="product_image">https://static.openfoodfacts.org/images/products/50184385/front_en.9.400.jpg</field>
     <field name="fat_amount">0.1</field>
     <field name="saturated_fats">0</field>
     <field name="carbohydrate">24</field>
@@ -110,7 +110,7 @@ XML;
 
         $expected = <<<'CSV'
 barcode_id,product_name,ingredients,product_image,fat_amount,saturated_fats,carbohydrate,sugar,dietary_fiber,protein,salt,sodium,alcohol,is_healthy
-50184385,"Marmite yeast extract","Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.",https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg,0.1,0,24,1,3.5,39,9.906,3.9,,0
+50184385,"Marmite yeast extract","Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.",https://static.openfoodfacts.org/images/products/50184385/front_en.9.400.jpg,0.1,0,24,1,3.5,39,9.906,3.9,,0
 0667803001957,"Yeast Extract","Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).",,0,,0,,,50,0.97,5,,1
 
 CSV;
@@ -144,7 +144,7 @@ CSV;
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 INSERT INTO product (barcode_id, product_name, ingredients, product_image, fat_amount, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
-VALUES ('50184385', 'Marmite yeast extract', 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.', 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg', '0.1', '0', '24', '1', '3.5', '39', '9.906', '3.9', '', '0');
+VALUES ('50184385', 'Marmite yeast extract', 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.', 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.400.jpg', '0.1', '0', '24', '1', '3.5', '39', '9.906', '3.9', '', '0');
 
 INSERT INTO product (barcode_id, product_name, ingredients, product_image, fat_amount, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
 VALUES ('0667803001957', 'Yeast Extract', 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).', '', '0', '', '0', '', '', '50', '0.97', '5', '', '1');
@@ -181,7 +181,7 @@ SQL;
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 INSERT INTO product (barcode_id, product_name, ingredients, product_image, fat_amount, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
-VALUES ('50184385', 'Marmite yeast extract', 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.', 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.200.jpg', '0.1', '0', '24', '1', '3.5', '39', '9.906', '3.9', '', '0');
+VALUES ('50184385', 'Marmite yeast extract', 'Yeast extract, salt, vegetable extract, niacin, thiamin, spice extracts (contains _celery_), riboflavin, folic acid, vitamin B12.', 'https://static.openfoodfacts.org/images/products/50184385/front_en.9.400.jpg', '0.1', '0', '24', '1', '3.5', '39', '9.906', '3.9', '', '0');
 
 INSERT INTO product (barcode_id, product_name, ingredients, product_image, fat_amount, saturated_fats, carbohydrate, sugar, dietary_fiber, protein, salt, sodium, alcohol, is_healthy)
 VALUES ('0667803001957', 'Yeast Extract', 'Yeast extract, salt, carrot and onion extract, spice extracts, enriched with nicotinamide (niacin), thiamin hydrochloride, riboflavin and cyanocobalamin (vitamin b12).', '', '0', '', '0', '', '', '50', '0.97', '5', '', '1');

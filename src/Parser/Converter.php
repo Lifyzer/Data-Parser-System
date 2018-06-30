@@ -29,7 +29,7 @@ class Converter
     private const WANTED_DATA = [
         'code',
         'product_name',
-        'image_front_small_url',
+        'image_url',
         //'countries_en',
         'ingredients_text',
         //'allergens_en',
@@ -184,7 +184,7 @@ class Converter
         $search = [
             'code',
             'product_name',
-            'image_front_small_url',
+            'image_url',
             'ingredients_text',
             'sugars_100g',
             'carbohydrates_100g',
