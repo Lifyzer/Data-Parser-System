@@ -76,7 +76,7 @@ class Converter
         $csvReader->setHeaderOffset(0);
 
         $records = $csvReader->getRecords();
-        $this->populateData($records);
+        $this->generateData($records);
     }
 
     public function asArray(): array
@@ -160,7 +160,7 @@ class Converter
         return $sqlQueries;
     }
 
-    private function populateData(Iterator $records): void
+    private function generateData(Iterator $records): void
     {
         foreach ($records as $offset => $data) {
             if ($this->isProductNameValid($data)) {
