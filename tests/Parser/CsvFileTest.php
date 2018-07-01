@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Lifyzer\Tests\Parser;
 
 use Lifyzer\Parser\CsvFile;
+use Lifyzer\Parser\Exception\InvalidFileException;
 use PHPUnit\Framework\TestCase;
 
 class CsvFileTest extends TestCase
@@ -23,20 +24,20 @@ class CsvFileTest extends TestCase
 
     /**
      * @dataProvider invalidFilenamesProvider
-     * @expectedException \Lifyzer\Parser\Exception\InvalidFileException
-     * @expectedExceptionCode \Lifyzer\Parser\Exception\InvalidFileException::WRONG_EXTENSION
      */
     public function testWrongExtension(string $filename): void
     {
+        $this->expectException(InvalidFileException::class);
+        $this->expectExceptionCode(InvalidFileException::WRONG_EXTENSION);
+
         new CsvFile($filename);
     }
 
-    /**
-     * @expectedException \Lifyzer\Parser\Exception\InvalidFileException
-     * @expectedExceptionCode \Lifyzer\Parser\Exception\InvalidFileException::TOO_SHORT
-     */
     public function testTooShortFilename(): void
     {
+        $this->expectException(InvalidFileException::class);
+        $this->expectExceptionCode(InvalidFileException::TOO_SHORT);
+
         new CsvFile('/var/www/html/a.csv');
     }
 
