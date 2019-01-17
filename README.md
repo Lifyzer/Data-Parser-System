@@ -6,7 +6,7 @@ _Simple script that parses data from open source food databases to the standard 
 ## The Requirements
 
 * 🐘 [PHP 7.1](http://php.net/releases/7_1_0.php) or higher
-* [Composer](https://getcomposer.org)
+* 🎷 [Composer](https://getcomposer.org)
 
 
 ## This can be slow... With big databases
