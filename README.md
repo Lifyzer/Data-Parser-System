@@ -21,7 +21,7 @@ Made with ❤️ by [Pierre-Henry Soria](http://pierrehenry.be)! (and in good he
 
 ## Tests
 
-To run the tests suite:
+To run the test suites:
 
 ```bash
 $ composer install
