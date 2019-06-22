@@ -3,7 +3,7 @@
 _Simple script that parses data from open source food databases to the standard Lifyzer food DB structure._
 
 
-## The Requirements
+## The Requirements ⚙
 
 * 🐘 [PHP 7.1](http://php.net/releases/7_1_0.php) or higher
 * 🎷 [Composer](https://getcomposer.org)
@@ -16,10 +16,15 @@ When running `transform-csv-to-valid-file.php` with >= 2.4 GB CSV file for the f
 
 ## Who Did This...? 😉
 
-Made with ❤️ by [Pierre-Henry Soria](http://pierrehenry.be)! (and in good health **thanks [Lifyzer App](https://lifyzer.com)**! 😸)
+Made with ❤️ by [Pierre-Henry Soria](https://pierrehenry.be)! (and in good health **thanks [Lifyzer App](https://lifyzer.com)**! 😸)
 
 
-## Tests
+## Contact 📧
+
+Email me at *pierre {[AT]} soria {[D0T]} email*
+
+
+## Tests 👷
 
 To run the test suites:
 
