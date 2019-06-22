@@ -11,7 +11,7 @@ _Simple script that parses data from open source food databases to the standard 
 
 ## This can be slow... With big databases
 
-When running `transform-csv-to-valid-file.php` with >= 1.5 GB CSV file for the food database provider, it can take nearly 3 days. Just keep your Web browser running and wait :) 
+When running `transform-csv-to-valid-file.php` with >= 2.4 GB CSV file for the food database provider, it can take nearly 5 days. Just keep your Web browser running and wait :) 
 
 
 ## Who Did This...? 😉
