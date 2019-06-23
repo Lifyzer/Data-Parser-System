@@ -34,22 +34,24 @@ class HealthStatus
     ];
 
     private const GOOD_INGREDIENTS = [
-        'apples' => 1, // should be more than one
+        'apples' => 1, // plural, should be more than one
         'broccoli' => 2.5,
         'lentil' => 2,
         'spinach' => 1,
-        'walnuts' => 1, // should be more than one
-        'chestnuts' => 1, // should be more than one
-        'avocados' => 1, // should be more than one
+        'celery' => 0.8,
+        'walnuts' => 1, // plural, should be more than one
+        'chestnuts' => 1, // plural, should be more than one
+        'avocados' => 1, // plural, should be more than one
         'lemon' => 1,
         'garlic' => 0.5,
         'antioxidant' => 2,
-        'sesame' => 1.5,
+        'sesame' => 1,
         'curcuma' => 1,
         'spirulina|spiruline' => 1,
         'chia' => 1.2, // https://draxe.com/chia-seeds-benefits-side-effects/
         'kale' => 0.3,
         'goji' => 0.4, // https://www.nhs.uk/Livewell/superfoods/Pages/are-goji-berries-a-superfood.aspx
+        'zucchini|courgette' => 0.4,
     ];
 
     /** @var array */
