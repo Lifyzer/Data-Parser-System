@@ -19,7 +19,6 @@ if (!ini_get('auto_detect_line_endings')) {
     ini_set('auto_detect_line_endings', '1');
 }
 
-
 require 'vendor/autoload.php';
 
 $fullProviderDbPath = __DIR__ . '/data/providers/' . Converter::FILENAME_PROVIDER;
