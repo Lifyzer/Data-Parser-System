@@ -32,7 +32,11 @@ class CsvFile
 
         if ($this->isInvalidExtension() || $this->isTooShortFilename()) {
             $exceptionCode = $this->isInvalidExtension() ? InvalidFileException::WRONG_EXTENSION : InvalidFileException::TOO_SHORT;
-            throw new InvalidFileException('File type or file length is invalid', $exceptionCode);
+
+            throw new InvalidFileException(
+                'File type or file length is invalid',
+                $exceptionCode
+            );
         }
     }
 

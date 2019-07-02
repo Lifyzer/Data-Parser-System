@@ -1,7 +1,15 @@
 {
   "name": "ph-7/lifyzer-data-parser",
   "description": "Simple script that parses data from open source databases to the standard Lifyzer DB structure",
-  "keywords": ["data", "food", "drink", "app", "healthy", "parser", "csv"],
+  "keywords": [
+    "data",
+    "food",
+    "drink",
+    "app",
+    "healthy",
+    "parser",
+    "csv"
+  ],
   "type": "library",
   "homepage": "http://ph7.me",
   "license": "GPL-3.0-or-later",
