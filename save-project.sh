@@ -7,6 +7,6 @@ function save-project() {
     git push
 }
 
-save-project git@github.com:Lifyzer/Data-Parser-System.git
 save-project git@gitlab.com:pH-7/lifyzer-data-parser-system.git
 save-project git@bitbucket.org:pH_7/lifyzer-data-parser-system.git
+save-project git@github.com:Lifyzer/Data-Parser-System.git
