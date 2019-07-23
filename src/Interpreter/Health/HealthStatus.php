@@ -31,6 +31,11 @@ class HealthStatus
         'firming agent' => 0.7,
         'calcium chloride' => 0.7, // https://www.livestrong.com/article/457871-how-does-calcium-chloride-work/
         'aspartame|acesulfame' => 0.4,
+        'syrup|sirop' => 1.5,
+        'dextrose|maltose|fructose|glucose' => 1.5,
+        'dextrin|dextrine' => 1.5,
+        'maltodextrin|maltodextrine' => 1.5,
+        'sucrose|saccharose' => 1.5,
     ];
 
     private const GOOD_INGREDIENTS = [
