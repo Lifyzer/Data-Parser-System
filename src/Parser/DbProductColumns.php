@@ -7,7 +7,7 @@
 
 namespace Lifyzer\Parser;
 
-class DbProductColumns
+final class DbProductColumns
 {
     public const PRODUCT_ID = 'id';
     public const BARCODE = 'barcode_id';
