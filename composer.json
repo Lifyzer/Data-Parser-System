@@ -8,16 +8,20 @@
     "app",
     "healthy",
     "parser",
+    "health",
+    "health calculator",
+    "database",
+    "generator",
     "csv"
   ],
   "type": "library",
-  "homepage": "http://ph7.me",
+  "homepage": "https://lifyzer.com",
   "license": "GPL-3.0-or-later",
   "authors": [
     {
       "name": "Pierre-Henry Soria",
       "email": "hi@ph7.me",
-      "homepage": "http://ph7.me"
+      "homepage": "https://ph7.me"
     }
   ],
   "require": {
