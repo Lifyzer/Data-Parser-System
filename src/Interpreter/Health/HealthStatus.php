@@ -120,6 +120,9 @@ class HealthStatus
      */
     private function findInIngredients(string $component): bool
     {
-        return preg_match('/' . $component . '/i', $this->data[$this->offset][DbColumn::INGREDIENTS]) === 1;
+        return preg_match(
+                '/' . $component . '/i',
+                $this->data[$this->offset][DbColumn::INGREDIENTS]
+            ) === 1;
     }
 }
