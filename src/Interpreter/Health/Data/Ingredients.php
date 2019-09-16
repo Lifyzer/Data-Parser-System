@@ -48,5 +48,6 @@ final class Ingredients
         'kale' => 0.3,
         'goji' => 0.4, // https://www.nhs.uk/Livewell/superfoods/Pages/are-goji-berries-a-superfood.aspx
         'zucchini|courgette' => 0.4,
+        'basil' => 0.3,
     ];
 }
