@@ -36,5 +36,8 @@
     "psr-4": {
       "Lifyzer\\": "src"
     }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
   }
 }
