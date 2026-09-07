@@ -47,7 +47,7 @@ class CsvFile
 
     private function isInvalidExtension(): bool
     {
-        return strpos($this->getFileExtension(), self::VALID_EXTENSION_FILE) !== 0;
+        return $this->getFileExtension() !== self::VALID_EXTENSION_FILE;
     }
 
     private function isTooShortFilename(): bool

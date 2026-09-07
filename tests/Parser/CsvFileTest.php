@@ -45,6 +45,8 @@ class CsvFileTest extends TestCase
     {
         return [
             ['blabla.doc'],
+            ['myfile.csvbackup'],
+            ['myfile.csv.exe'],
             ['myfile.CSV'],
             ['myfile']
         ];
