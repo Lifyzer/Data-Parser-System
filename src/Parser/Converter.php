@@ -164,6 +164,7 @@ class Converter
     {
         foreach ($records as $offset => $data) {
             if ($this->isProductNameValid($data)) {
+                $this->validData[$offset] = array_fill_keys(DbColumn::COLUMNS, '');
                 foreach ($data as $key => $val) {
                     if ($this->isCsvKeyValid($key)) {
                         $this->validData[$offset][$this->replaceKeys($key)] = $val ?? '';

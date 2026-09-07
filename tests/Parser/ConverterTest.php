@@ -203,6 +203,21 @@ SQL;
         $this->assertSame([], $converter->asArray());
     }
 
+    public function testExportKeepsCanonicalColumnsWhenProviderHeadersAreReordered(): void
+    {
+        $reader = Reader::createFromString("ingredients_text\tproduct_name\tcode\tsugars_100g\nCarrots\tSoup\t12345\t2\n");
+        $converter = new Converter($reader);
+        $lines = explode("\n", trim($converter->asCsv()));
+        $record = array_combine(str_getcsv($lines[0], ',', '"', '\\'), str_getcsv($lines[1], ',', '"', '\\'));
+
+        $this->assertSame('12345', $record['barcode_id']);
+        $this->assertSame('Soup', $record['product_name']);
+        $this->assertSame('Carrots', $record['ingredients']);
+        $this->assertSame('2', $record['sugar']);
+        $this->assertSame('', $record['fat_amount']);
+        $this->assertStringContainsString("VALUES ('12345', 'Soup', 'Carrots',", $converter->asSql());
+    }
+
     private function initializeConversion(): Converter
     {
         /**
