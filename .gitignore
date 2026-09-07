@@ -28,3 +28,6 @@ Thumbs.db
 # Mac OS
 .DS_Store*
 ._*
+
+# PHPUnit runtime cache
+.phpunit.result.cache

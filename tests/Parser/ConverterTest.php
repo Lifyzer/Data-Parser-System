@@ -101,7 +101,7 @@ class ConverterTest extends TestCase
 </resultset>
 
 XML;
-        $this->assertSame($expected, $converter->asXml());
+        $this->assertXmlStringEqualsXmlString($expected, $converter->asXml());
     }
 
     public function testCsvConverted(): void

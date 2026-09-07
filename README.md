@@ -34,6 +34,10 @@ Email me at *hi {[AT]} ph7 {[D0T]} me*
 
 ## Tests 👷
 
+Development tests require PHP 7.3+ for PHPUnit 9.6. CI exercises PHP 8.3 and 8.5;
+the library retains its legacy PHP 7.1 source requirement, but that runtime is not
+validated by the current test matrix. The unused Phake dependency is removed.
+
 To run the test suites:
 
 ```console
